@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.ecooperante.mapper.ClubDonanteCampaniaMapper">
+	
+	<resultMap id="ClubDonanteCampaniaMap" type="pmp.lupdup.dao.ecooperante.domain.ClubDonanteCampania">
+		<result column="id_campania" property="intIdCampania" jdbcType="INTEGER"/>
+		<result column="id_donante" property="intIdDonante" jdbcType="INTEGER"/>
+		<result column="ind_estado" property="intIndEstado" jdbcType="INTEGER"/>
+		<result column="des_documento" property="strDesDocumento" jdbcType="VARCHAR"/>
+		<result column="num_precio" property="dblNumPrecio" jdbcType="DOUBLE"/>
+		<result column="num_precio_panpania" property="dblNumPrecioPanpania" jdbcType="DOUBLE"/>
+		<result column="des_comentario" property="strDesComentario" jdbcType="VARCHAR"/>
+		<result column="ind_estado_desc" property="intIndEstadoDesc" jdbcType="VARCHAR"/>
+		<result column="fec_asiste" property="dteFecAsiste" jdbcType="DATE"/>
+		<result column="hor_asiste" property="strHorAsiste" jdbcType="VARCHAR"/>
+		
+		<result column="num_dni" property="strNumDni" jdbcType="VARCHAR"/>
+		<result column="nom_nombre" property="strNomNombre" jdbcType="VARCHAR"/>
+		<result column="nom_appaterno" property="strNomAppaterno" jdbcType="VARCHAR"/>
+		<result column="nom_apmaterno" property="strNomApmaterno" jdbcType="VARCHAR"/>
+		<result column="des_correo" property="strDesCorreo" jdbcType="VARCHAR"/>
+		
+		<result column="des_campania" property="strDesCampania" jdbcType="VARCHAR"/>
+		<result column="num_descuento" property="intNumDescuento" jdbcType="INTEGER"/>
+		
+	</resultMap>
+	
+	<select id="selectByDefaultParameter" resultMap="ClubDonanteCampaniaMap" parameterType="pmp.lupdup.dao.ecooperante.domain.ClubDonanteCampaniaParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_donante_campania as tab
+		inner join lupdup.t_donante d on d.id_donante = tab.id_donante
+		inner join lupdup.t_campania c on c.id_campania = tab.id_campania
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	
+	<select id="selectByPrimaryKey" resultMap="ClubDonanteCampaniaMap" parameterType="pmp.lupdup.dao.ecooperante.domain.ClubDonanteCampaniaKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_donante_campania as tab
+		inner join lupdup.t_donante d on d.id_donante = tab.id_donante
+		inner join lupdup.t_campania c on c.id_campania = tab.id_campania
+		where 1 = 1
+	</select>
+	
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.ecooperante.domain.ClubDonanteCampania">
+		insert into lupdup.t_donante_campania
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id_campania,
+			id_donante,
+			ind_estado,
+			des_documento,
+			num_precio,
+			num_precio_panpania,
+			des_comentario,
+			fec_asiste,
+			hor_asiste,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="intIdCampania != null">
+					#{intIdCampania, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdDonante != null">
+					#{intIdDonante, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndEstado != null">
+					#{intIndEstado, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesDocumento != null">
+					#{strDesDocumento, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dblNumPrecio != null">
+					#{dblNumPrecio, jdbcType=DOUBLE},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dblNumPrecioPanpania != null">
+					#{dblNumPrecioPanpania, jdbcType=DOUBLE},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesComentario != null">
+					#{strDesComentario, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecAsiste != null">
+					#{dteFecAsiste, jdbcType=DATE},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strHorAsiste != null">
+					#{strHorAsiste, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.ecooperante.domain.ClubDonanteCampania">
+		update lupdup.t_donante_campania
+		<set>
+			<choose>
+				<when test="intIdCampania != null">
+					id_campania = #{intIdCampania,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_campania = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdDonante != null">
+					id_donante = #{intIdDonante,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_donante = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndEstado != null">
+					ind_estado = #{intIndEstado,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					ind_estado = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesDocumento != null">
+					des_documento = #{strDesDocumento,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_documento = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dblNumPrecio != null">
+					num_precio = #{dblNumPrecio,jdbcType=DOUBLE},
+				</when>
+				<otherwise>
+					num_precio = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dblNumPrecioPanpania != null">
+					num_precio_panpania = #{dblNumPrecioPanpania,jdbcType=DOUBLE},
+				</when>
+				<otherwise>
+					num_precio_panpania = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesComentario != null">
+					des_comentario = #{strDesComentario,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_comentario = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecAsiste != null">
+					fec_asiste = #{dteFecAsiste,jdbcType=DATE},
+				</when>
+				<otherwise>
+					fec_asiste = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strHorAsiste != null">
+					hor_asiste = #{strHorAsiste,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					hor_asiste = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+	</update>
+	
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.ecooperante.domain.ClubDonanteCampaniaKey">
+		delete from lupdup.t_donante_campania
+		where 1 = 1
+	</delete>
+	
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	
+	<sql id="Base_Column_List">
+		<![CDATA[tab.id_campania, 
+tab.id_donante, 
+tab.ind_estado, 
+(select c.des_indicador from lupdup.t_catalogo c where c.cod_indicador = 7 and c.id_catalogo=tab.ind_estado) as ind_estado_desc,
+tab.des_documento, 
+tab.num_precio, 
+tab.num_precio_panpania, 
+tab.des_comentario,
+tab.fec_asiste,
+tab.hor_asiste,
+d.num_dni,
+d.nom_nombre,
+d.nom_appaterno,
+d.nom_apmaterno,
+d.des_correo,
+c.des_campania,
+c.num_descuento
+]]>
+	</sql>
+	
+</mapper>

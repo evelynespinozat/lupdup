@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<package name="cita" namespace="/" extends="principal">
+		<action name="cita" class="pmp.lupdup.web.donantes.action.CitaAction" method="inicio">
+			<result name="success" type="tiles" >cita_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="buscarCita" class="pmp.lupdup.web.donantes.action.CitaAction" method="buscar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="nuevoCita" class="pmp.lupdup.web.donantes.action.CitaAction" method="nuevo">
+			<result name="success" type="tiles">cita_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="editarCita" class="pmp.lupdup.web.donantes.action.CitaAction" method="editar">
+			<result name="success" type="tiles">cita_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="guardarCita" class="pmp.lupdup.web.donantes.action.CitaAction" method="guardar">
+			<result name="error" type="json" />
+			<result name="success" type="json" />
+			<result name="success_donante" type="redirectAction" >nuevoDonante</result>
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="eliminarCita" class="pmp.lupdup.web.donantes.action.CitaAction" method="eliminar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="formatoHoraCita" class="pmp.lupdup.web.donantes.action.CitaAction" method="formatoHoraCargar">
+			<result name="success" type="tiles">cita_hora_combo_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+
+
+		
+		
+	</package>
+	
+</struts>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.ecooperante.mapper.CampaniaCooperanteMapper">
+	<resultMap id="CampaniaCooperanteMap" type="pmp.lupdup.dao.ecooperante.domain.CampaniaCooperante">
+		<result column="id_campania" property="srlIdCampania" jdbcType="INTEGER"/>
+		<result column="id_entidadcolaboradora" property="intIdEntidadcolaboradora" jdbcType="INTEGER"/>
+		<result column="des_campania" property="strDesCampania" jdbcType="VARCHAR"/>
+		<result column="cnt_asignada" property="intCntAsignada" jdbcType="INTEGER"/>
+		<result column="cnt_disponible" property="intCntDisponible" jdbcType="INTEGER"/>
+		<result column="fec_inicio" property="dteFecInicio" jdbcType="DATE"/>
+		<result column="fec_fin" property="dteFecFin" jdbcType="DATE"/>
+		<result column="ind_activo_string" property="intIndActivoDesc" jdbcType="VARCHAR"/>
+		<result column="ind_activo" property="intIndActivo" jdbcType="INTEGER"/>
+		<result column="num_descuento" property="intNumDescuento" jdbcType="INTEGER"/>
+		<result column="des_regalo" property="strDesRegalo" jdbcType="VARCHAR"/>
+		<result column="cnt_minpuntos" property="intCntMinpuntos" jdbcType="INTEGER"/>
+		<result column="cnt_gusta" property="intCntGusta" jdbcType="INTEGER"/>
+		<result column="id_imagen_string" property="strNomDescripcion" jdbcType="VARCHAR"/>
+		<result column="id_imagen" property="intIdImagen" jdbcType="INTEGER"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="CampaniaCooperanteMap" parameterType="pmp.lupdup.dao.ecooperante.domain.CampaniaCooperanteParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_campania as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="CampaniaCooperanteMap" parameterType="pmp.lupdup.dao.ecooperante.domain.CampaniaCooperanteKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_campania as tab
+		where 1 = 1
+		and id_campania = #{srlIdCampania,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_campania_id_campania_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.ecooperante.domain.CampaniaCooperante">
+		insert into lupdup.t_campania
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id_entidadcolaboradora,
+			des_campania,
+			cnt_asignada,
+			cnt_disponible,
+			fec_inicio,
+			fec_fin,
+			ind_activo,
+			num_descuento,
+			des_regalo,
+			cnt_minpuntos,
+			cnt_gusta,
+			id_imagen,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="intIdEntidadcolaboradora != null">
+					#{intIdEntidadcolaboradora, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesCampania != null">
+					#{strDesCampania, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCntAsignada != null">
+					#{intCntAsignada, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCntDisponible != null">
+					#{intCntDisponible, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecInicio != null">
+					#{dteFecInicio, jdbcType=DATE},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecFin != null">
+					#{dteFecFin, jdbcType=DATE},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndActivo != null">
+					#{intIndActivo, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumDescuento != null">
+					#{intNumDescuento, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesRegalo != null">
+					#{strDesRegalo, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCntMinpuntos != null">
+					#{intCntMinpuntos, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCntGusta != null">
+					#{intCntGusta, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdImagen != null">
+					#{intIdImagen, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.ecooperante.domain.CampaniaCooperante">
+		update lupdup.t_campania
+		<set>
+			<choose>
+				<when test="intIdEntidadcolaboradora != null">
+					id_entidadcolaboradora = #{intIdEntidadcolaboradora,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_entidadcolaboradora = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesCampania != null">
+					des_campania = #{strDesCampania,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_campania = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCntAsignada != null">
+					cnt_asignada = #{intCntAsignada,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					cnt_asignada = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCntDisponible != null">
+					cnt_disponible = #{intCntDisponible,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					cnt_disponible = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecInicio != null">
+					fec_inicio = #{dteFecInicio,jdbcType=DATE},
+				</when>
+				<otherwise>
+					fec_inicio = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecFin != null">
+					fec_fin = #{dteFecFin,jdbcType=DATE},
+				</when>
+				<otherwise>
+					fec_fin = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndActivo != null">
+					ind_activo = #{intIndActivo,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					ind_activo = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumDescuento != null">
+					num_descuento = #{intNumDescuento,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_descuento = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesRegalo != null">
+					des_regalo = #{strDesRegalo,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_regalo = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCntMinpuntos != null">
+					cnt_minpuntos = #{intCntMinpuntos,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					cnt_minpuntos = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCntGusta != null">
+					cnt_gusta = #{intCntGusta,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					cnt_gusta = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdImagen != null">
+					id_imagen = #{intIdImagen,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_imagen = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_campania = #{srlIdCampania,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.ecooperante.domain.CampaniaCooperanteKey">
+		delete from lupdup.t_campania
+		where 1 = 1
+		<if test="srlIdCampania != null">
+		and id_campania = #{srlIdCampania,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_campania, 
+id_entidadcolaboradora, 
+des_campania, 
+cnt_asignada, 
+cnt_disponible, 
+fec_inicio, 
+fec_fin, 
+ind_activo, 
+(SELECT ts.des_indicador FROM lupdup.t_catalogo ts WHERE ts.id_catalogo = tab.ind_activo) AS ind_activo_string, 
+num_descuento, 
+des_regalo, 
+cnt_minpuntos, 
+cnt_gusta, 
+id_imagen, 
+(SELECT ts.nom_descripcion FROM lupdup.t_imagen ts WHERE ts.id_imagen = tab.id_imagen) AS id_imagen_string]]>
+	</sql>
+</mapper>

@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.donantes.mapper.FichaResultadosMapper">
+	<resultMap id="FichaResultadosMap" type="pmp.lupdup.dao.donantes.domain.FichaResultados">
+		<result column="id_ficha" property="srlIdFicha" jdbcType="INTEGER"/>
+		<result column="id_donante" property="intIdDonante" jdbcType="INTEGER"/>
+		<result column="id_centrosalud" property="intIdCentrosalud" jdbcType="INTEGER"/>
+		<result column="id_imagen_string" property="strNomDescripcion" jdbcType="VARCHAR"/>
+		<result column="id_imagen" property="intIdImagen" jdbcType="INTEGER"/>
+		<result column="fec_analisis" property="dteFecAnalisis" jdbcType="DATE"/>
+		<result column="hor_analisis" property="strHorAnalisis" jdbcType="VARCHAR"/>
+		<result column="ind_estado" property="intIndEstado" jdbcType="INTEGER"/>
+		<result column="num_unidades" property="intNumUnidades" jdbcType="INTEGER"/>
+		<result column="nombre_completo_donante_string" property="strNombreCompletoDonante" jdbcType="VARCHAR"/>
+		<result column="id_cita" property="intIdCita" jdbcType="INTEGER"/>
+		
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="FichaResultadosMap" parameterType="pmp.lupdup.dao.donantes.domain.FichaResultadosParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_ficha as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="FichaResultadosMap" parameterType="pmp.lupdup.dao.donantes.domain.FichaResultadosKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_ficha as tab
+		where 1 = 1
+		and id_ficha = #{srlIdFicha,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_ficha_id_ficha_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.donantes.domain.FichaResultados">
+		insert into lupdup.t_ficha
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id_donante,
+			id_centrosalud,
+			id_imagen,
+			fec_analisis,
+			hor_analisis,
+			ind_estado,
+			num_unidades,
+			id_cita,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="intIdDonante != null">
+					#{intIdDonante, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdCentrosalud != null">
+					#{intIdCentrosalud, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdImagen != null">
+					#{intIdImagen, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecAnalisis != null">
+					#{dteFecAnalisis, jdbcType=DATE},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strHorAnalisis != null">
+					#{strHorAnalisis, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndEstado != null">
+					#{intIndEstado, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumUnidades != null">
+					#{intNumUnidades, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdCita != null">
+					#{intIdCita, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.donantes.domain.FichaResultados">
+		update lupdup.t_ficha
+		<set>
+			<choose>
+				<when test="intIdDonante != null">
+					id_donante = #{intIdDonante,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_donante = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdCentrosalud != null">
+					id_centrosalud = #{intIdCentrosalud,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_centrosalud = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdImagen != null">
+					id_imagen = #{intIdImagen,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_imagen = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecAnalisis != null">
+					fec_analisis = #{dteFecAnalisis,jdbcType=DATE},
+				</when>
+				<otherwise>
+					fec_analisis = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strHorAnalisis != null">
+					hor_analisis = #{strHorAnalisis,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					hor_analisis = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndEstado != null">
+					ind_estado = #{intIndEstado,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					ind_estado = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumUnidades != null">
+					num_unidades = #{intNumUnidades,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_unidades = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdCita != null">
+					id_cita = #{intIdCita,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_cita = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_ficha = #{srlIdFicha,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.donantes.domain.FichaResultadosKey">
+		delete from lupdup.t_ficha
+		where 1 = 1
+		<if test="srlIdFicha != null">
+		and id_ficha = #{srlIdFicha,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_ficha, 
+id_donante, 
+id_centrosalud, 
+id_imagen, 
+(SELECT ts.nom_descripcion FROM lupdup.t_imagen ts WHERE ts.id_imagen = tab.id_imagen) AS id_imagen_string, 
+fec_analisis, 
+hor_analisis, 
+ind_estado, 
+num_unidades,
+(SELECT d.nom_nombre||' '||d.nom_appaterno||' '||d.nom_apmaterno as nombre FROM lupdup.t_donante d WHERE d.id_donante = tab.id_donante) AS nombre_completo_donante_string,
+id_cita]]>
+	</sql>
+</mapper>

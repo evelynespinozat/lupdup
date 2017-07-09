@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<package name="campania-cooperante" namespace="/" extends="principal">
+		<action name="campaniaCooperante" class="pmp.lupdup.web.ecooperante.action.CampaniaCooperanteAction" method="inicio">
+			<result name="success" type="tiles" >campania_cooperante_inicio</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="buscarCampaniaCooperante" class="pmp.lupdup.web.ecooperante.action.CampaniaCooperanteAction" method="buscar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="nuevoCampaniaCooperante" class="pmp.lupdup.web.ecooperante.action.CampaniaCooperanteAction" method="nuevo">
+			<result name="success" type="tiles">campania_cooperante_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="editarCampaniaCooperante" class="pmp.lupdup.web.ecooperante.action.CampaniaCooperanteAction" method="editar">
+			<result name="success" type="tiles">campania_cooperante_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="guardarCampaniaCooperante" class="pmp.lupdup.web.ecooperante.action.CampaniaCooperanteAction" method="guardar">
+			<result name="error" type="json" />
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="eliminarCampaniaCooperante" class="pmp.lupdup.web.ecooperante.action.CampaniaCooperanteAction" method="eliminar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+
+
+		
+		<action name="descargar" class="pmp.lupdup.general.action.DownloadAction" >
+			<result name="success" type="stream">
+				<param name="inputName">archivo</param>
+				<param name="contentLength">${archivoTamanio}</param>
+				<param name="contentType">application/octet-stream</param>
+				<param name="contentDisposition">attachment;filename="${archivoNombre}"</param>
+				<param name="bufferSize">1048576</param><!-- Un Mega de buffer -->
+			</result> 
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		
+	</package>
+	
+</struts>

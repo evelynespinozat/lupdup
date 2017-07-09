@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<package name="allegados" namespace="/" extends="principal">
+		<action name="allegados" class="pmp.lupdup.web.donantes.action.AllegadosAction" method="inicio">
+			<result name="success" type="tiles" >allegados_inicio</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="buscarAllegados" class="pmp.lupdup.web.donantes.action.AllegadosAction" method="buscar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="nuevoAllegados" class="pmp.lupdup.web.donantes.action.AllegadosAction" method="nuevo">
+			<result name="success" type="tiles">allegados_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="editarAllegados" class="pmp.lupdup.web.donantes.action.AllegadosAction" method="editar">
+			<result name="success" type="tiles">allegados_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="guardarAllegados" class="pmp.lupdup.web.donantes.action.AllegadosAction" method="guardar">
+			<result name="error" type="json" />
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="eliminarAllegados" class="pmp.lupdup.web.donantes.action.AllegadosAction" method="eliminar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+
+
+		
+		
+	</package>
+	
+</struts>

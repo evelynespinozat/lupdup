@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<package name="imagen" namespace="/" extends="principal">
+		<action name="imagen" class="pmp.lupdup.web.administrador.action.ImagenAction" method="inicio">
+			<result name="success" type="tiles" >imagen_inicio</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="buscarImagen" class="pmp.lupdup.web.administrador.action.ImagenAction" method="buscar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="nuevoImagen" class="pmp.lupdup.web.administrador.action.ImagenAction" method="nuevo">
+			<result name="success" type="tiles">imagen_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="editarImagen" class="pmp.lupdup.web.administrador.action.ImagenAction" method="editar">
+			<result name="success" type="tiles">imagen_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="guardarImagen" class="pmp.lupdup.web.administrador.action.ImagenAction" method="guardar">
+			<result name="error" type="json" />
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="eliminarImagen" class="pmp.lupdup.web.administrador.action.ImagenAction" method="eliminar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+
+
+		
+		
+	</package>
+	
+</struts>

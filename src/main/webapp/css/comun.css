@@ -1,0 +1,140 @@
+body {
+	font-size: 11px;
+	
+/* 	line-height: 1.5; */
+}
+.row {
+	margin-bottom: 3px;
+}
+.info,.exitomsg,.alertamsg,.errormsg {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	border: 1px solid;
+	/*margin: 10px 0px;*/
+	margin: 0px 0px 0px 0px;
+	padding: 15px 15px 15px 25px;
+	background-repeat: no-repeat;
+	background-position: 10px center;
+	position: relative;
+	height: 100%;
+	text-align: left;
+}
+
+.info {
+	color: #00529B;
+	background-color: #BDE5F8;
+	background-image: url('../image/iconsmsg/info.png');
+}
+
+.exitomsg {
+	/*width: 100%;*/
+	color: #4F8A10;
+	background-color: #DFF2BF;
+	background-image: url('../image/iconsmsg/exito.png');
+}
+.exitomsg LI {
+	margin-left: 30px;
+}
+.alertamsg {
+	color: #9F6000;
+	background-color: #FEEFB3;
+	background-image: url('../image/iconsmsg/alerta.png');
+}
+
+.errormsg {
+	color: #D8000C;
+	background-color: #FFBABA;
+	background-image: url('../image/iconsmsg/error.png');
+}
+.errormsg LI {
+	margin-left: 30px;
+}
+fieldset {
+	border-color: rgb(192, 192, 192);
+	border-width: 1px;
+	border-style: solid;
+/* 	margin-top: 15px; */
+/* 	margin-bottom: 15px; */
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+legend {
+	font-size: 12px;
+	font-weight: bold;
+	margin-bottom: auto;
+	margin-left:5px;
+	border-bottom: 0;
+	width: auto;
+	color: #001B84;
+}
+.modal-lg {
+	width: 1050px;
+	height: 580px;
+}
+
+.btn {
+	font-size: 13px;
+}
+.form-control {
+	font-size: 12px;
+	height: 28px;
+}
+.datepicker  {
+	width: 77%;
+	display: inline-table;
+}
+.ui-datepicker-trigger {
+	cursor: pointer;
+	padding-left: 3px;
+	height: 28px;
+	vertical-align: bottom;
+}
+#tableDefaultExpediente thead tr {
+	background-color: #006EB5;
+	color: white;
+}
+#tableDefaultExpediente tbody td {
+	border: 1px solid #A4A7A9;
+	border-left-width: 0;
+	border-bottom-width: 0;
+}
+
+#tableDefaultExpediente {
+	border: 1px solid #A4A7A9;
+	border-left-width: 0;
+/* 	border-bottom-width: 0; */
+}
+.btn-primary, .btn-primary:FOCUS {
+	background-color: #F18626;
+	border: 0px solid #fff;
+}
+.btn-primary:HOVER {
+	background-color: #E6750F;
+	border: 0px solid #fff;
+}
+.btn-primary.disabled, .btn-primary[disabled], fieldset[disabled] .btn-primary, .btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled.focus, .btn-primary.focus[disabled], fieldset[disabled] .btn-primary.focus, .btn-primary.disabled:active, .btn-primary[disabled]:active, fieldset[disabled] .btn-primary:active, .btn-primary.disabled.active, .btn-primary.active[disabled], fieldset[disabled] .btn-primary.active {
+	background-color: #F5A963;
+	border: 0px solid #fff;
+}
+#idFormBuscarExpediente .clsCabeceraBuscar {
+	background-color: #F2FAFC;
+	color: #00A6D0;
+/* 	color: #006EB5; */
+}
+#idFormBuscarExpediente h4 {
+	color: #006EB5;
+}
+.help-block {
+	display: inline;
+}
+
+button[disabled].btn-style-three {
+	background-color: #F8F8F8;
+	color: #9E9E9E !important;
+	border: 2px solid #E4E4E4 !important;
+}
+button[disabled]:hover.btn-style-three {
+	background-color: #F8F8F8;
+	color: #9E9E9E !important;
+	border: 2px solid #E4E4E4 !important;
+}

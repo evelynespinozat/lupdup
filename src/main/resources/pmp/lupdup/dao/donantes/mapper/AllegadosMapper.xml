@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.donantes.mapper.AllegadosMapper">
+	<resultMap id="AllegadosMap" type="pmp.lupdup.dao.donantes.domain.Allegados">
+		<result column="id_allegados" property="srlIdAllegados" jdbcType="INTEGER"/>
+		<result column="id_donante" property="intIdDonante" jdbcType="INTEGER"/>
+		<result column="fec_ultimamodificacion" property="dteFecUltimaModificacion" jdbcType="DATE"/>
+		<result column="nom_nombre" property="strNomNombre" jdbcType="VARCHAR"/>
+		<result column="nom_appaterno" property="strNomAppaterno" jdbcType="VARCHAR"/>
+		<result column="nom_apmaterno" property="strNomApmaterno" jdbcType="VARCHAR"/>
+		<result column="fec_nacimiento" property="dteFecNacimiento" jdbcType="DATE"/>
+		<result column="num_celular" property="strNumCelular" jdbcType="VARCHAR"/>
+		<result column="num_telefono" property="strNumTelefono" jdbcType="VARCHAR"/>
+		<result column="des_correoelectronico" property="strDesCorreoelectronico" jdbcType="VARCHAR"/>
+		<result column="num_dni" property="strNumDni" jdbcType="VARCHAR"/>
+		<result column="id_tipopariente_string" property="intIdTipoparienteDesc" jdbcType="VARCHAR"/>
+		<result column="id_tipopariente" property="intIdTipopariente" jdbcType="INTEGER"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="AllegadosMap" parameterType="pmp.lupdup.dao.donantes.domain.AllegadosParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_allegados as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	
+	<select id="selectByPrimaryKey" resultMap="AllegadosMap" parameterType="pmp.lupdup.dao.donantes.domain.AllegadosKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_allegados as tab
+		where 1 = 1
+		and id_allegados = #{srlIdAllegados,jdbcType=INTEGER}
+	</select>
+
+	<select id="permiteModificar" resultType="Integer">
+		<![CDATA[
+		select 
+		(CASE WHEN (SELECT count(*) FROM lupdup.t_allegados as tab 
+			WHERE fec_ultimamodificacion = current_date OR date_part('year', current_date) > date_part('year', fec_ultimamodificacion)) > 0 THEN 1
+		WHEN (select count(*) from lupdup.t_allegados) = 0 THEN 1
+		ELSE 0 END)
+		]]>
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_allegados_id_allegados_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.donantes.domain.Allegados">
+		insert into lupdup.t_allegados
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id_donante,
+			fec_ultimamodificacion,
+			nom_nombre,
+			nom_appaterno,
+			nom_apmaterno,
+			fec_nacimiento,
+			num_celular,
+			num_telefono,
+			des_correoelectronico,
+			num_dni,
+			id_tipopariente,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="intIdDonante != null">
+					#{intIdDonante, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecUltimaModificacion != null">
+					#{dteFecUltimaModificacion, jdbcType=DATE},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomNombre != null">
+					#{strNomNombre, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomAppaterno != null">
+					#{strNomAppaterno, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomApmaterno != null">
+					#{strNomApmaterno, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecNacimiento != null">
+					#{dteFecNacimiento, jdbcType=DATE},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumCelular != null">
+					#{strNumCelular, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumTelefono != null">
+					#{strNumTelefono, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesCorreoelectronico != null">
+					#{strDesCorreoelectronico, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumDni != null">
+					#{strNumDni, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdTipopariente != null">
+					#{intIdTipopariente, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.donantes.domain.Allegados">
+		update lupdup.t_allegados
+		<set>
+			<choose>
+				<when test="intIdDonante != null">
+					id_donante = #{intIdDonante,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_donante = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecUltimaModificacion != null">
+					fec_ultimamodificacion = #{dteFecUltimaModificacion,jdbcType=DATE},
+				</when>
+				<otherwise>
+					fec_ultimamodificacion = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomNombre != null">
+					nom_nombre = #{strNomNombre,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_nombre = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomAppaterno != null">
+					nom_appaterno = #{strNomAppaterno,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_appaterno = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomApmaterno != null">
+					nom_apmaterno = #{strNomApmaterno,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_apmaterno = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecNacimiento != null">
+					fec_nacimiento = #{dteFecNacimiento,jdbcType=DATE},
+				</when>
+				<otherwise>
+					fec_nacimiento = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumCelular != null">
+					num_celular = #{strNumCelular,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					num_celular = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumTelefono != null">
+					num_telefono = #{strNumTelefono,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					num_telefono = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesCorreoelectronico != null">
+					des_correoelectronico = #{strDesCorreoelectronico,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_correoelectronico = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumDni != null">
+					num_dni = #{strNumDni,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					num_dni = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdTipopariente != null">
+					id_tipopariente = #{intIdTipopariente,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_tipopariente = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_allegados = #{srlIdAllegados,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.donantes.domain.AllegadosKey">
+		delete from lupdup.t_allegados
+		where 1 = 1
+		<if test="srlIdAllegados != null">
+		and id_allegados = #{srlIdAllegados,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_allegados, 
+id_donante, 
+fec_ultimamodificacion, 
+nom_nombre, 
+nom_appaterno, 
+nom_apmaterno, 
+fec_nacimiento, 
+num_celular, 
+num_telefono, 
+des_correoelectronico, 
+num_dni, 
+id_tipopariente, 
+(SELECT ts.des_indicador FROM lupdup.t_catalogo ts WHERE ts.id_catalogo = tab.id_tipopariente) AS id_tipopariente_string]]>
+	</sql>
+</mapper>

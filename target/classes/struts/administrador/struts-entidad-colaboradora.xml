@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<package name="entidad-colaboradora" namespace="/" extends="principal">
+		<action name="entidadColaboradora" class="pmp.lupdup.web.administrador.action.EntidadColaboradoraAction" method="inicio">
+			<result name="success" type="tiles" >entidad_colaboradora_inicio</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="buscarEntidadColaboradora" class="pmp.lupdup.web.administrador.action.EntidadColaboradoraAction" method="buscar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="nuevoEntidadColaboradora" class="pmp.lupdup.web.administrador.action.EntidadColaboradoraAction" method="nuevo">
+			<result name="success" type="tiles">entidad_colaboradora_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="editarEntidadColaboradora" class="pmp.lupdup.web.administrador.action.EntidadColaboradoraAction" method="editar">
+			<result name="success" type="tiles">entidad_colaboradora_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="guardarEntidadColaboradora" class="pmp.lupdup.web.administrador.action.EntidadColaboradoraAction" method="guardar">
+			<result name="error" type="json" />
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="eliminarEntidadColaboradora" class="pmp.lupdup.web.administrador.action.EntidadColaboradoraAction" method="eliminar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+
+
+		
+		
+	</package>
+	
+</struts>

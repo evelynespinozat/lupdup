@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.administrador.mapper.EntidadColaboradoraMapper">
+	<resultMap id="EntidadColaboradoraMap" type="pmp.lupdup.dao.administrador.domain.EntidadColaboradora">
+		<result column="id_entidadcolaboradora" property="srlIdEntidadcolaboradora" jdbcType="INTEGER"/>
+		<result column="nom_nombre" property="strNomNombre" jdbcType="VARCHAR"/>
+		<result column="ind_estado" property="strIndEstado" jdbcType="VARCHAR"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="EntidadColaboradoraMap" parameterType="pmp.lupdup.dao.administrador.domain.EntidadColaboradoraParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_entidad_colaboradora as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="EntidadColaboradoraMap" parameterType="pmp.lupdup.dao.administrador.domain.EntidadColaboradoraKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_entidad_colaboradora as tab
+		where 1 = 1
+		and id_entidadcolaboradora = #{srlIdEntidadcolaboradora,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_entidad_colaboradora_id_entidadcolaboradora_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.administrador.domain.EntidadColaboradora">
+		insert into lupdup.t_entidad_colaboradora
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			nom_nombre,
+			ind_estado,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="strNomNombre != null">
+					#{strNomNombre, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strIndEstado != null">
+					#{strIndEstado, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.administrador.domain.EntidadColaboradora">
+		update lupdup.t_entidad_colaboradora
+		<set>
+			<choose>
+				<when test="strNomNombre != null">
+					nom_nombre = #{strNomNombre,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_nombre = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strIndEstado != null">
+					ind_estado = #{strIndEstado,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					ind_estado = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_entidadcolaboradora = #{srlIdEntidadcolaboradora,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.administrador.domain.EntidadColaboradoraKey">
+		delete from lupdup.t_entidad_colaboradora
+		where 1 = 1
+		<if test="srlIdEntidadcolaboradora != null">
+		and id_entidadcolaboradora = #{srlIdEntidadcolaboradora,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_entidadcolaboradora,nom_nombre,ind_estado]]>
+	</sql>
+</mapper>

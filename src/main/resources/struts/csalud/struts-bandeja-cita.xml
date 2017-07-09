@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<package name="bandeja-cita" namespace="/" extends="principal">
+		<action name="bandejaCita" class="pmp.lupdup.web.csalud.action.BandejaCitaAction" method="inicio">
+			<result name="success" type="tiles" >bandeja_cita_inicio</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="buscarBandejaCita" class="pmp.lupdup.web.csalud.action.BandejaCitaAction" method="buscar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="nuevoBandejaCita" class="pmp.lupdup.web.csalud.action.BandejaCitaAction" method="nuevo">
+			<result name="success" type="tiles">bandeja_cita_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="editarBandejaCita" class="pmp.lupdup.web.csalud.action.BandejaCitaAction" method="editar">
+			<result name="success" type="tiles">bandeja_cita_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="guardarBandejaCita" class="pmp.lupdup.web.csalud.action.BandejaCitaAction" method="guardar">
+			<result name="error" type="json" />
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="eliminarBandejaCita" class="pmp.lupdup.web.csalud.action.BandejaCitaAction" method="eliminar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="editarFichaBandejaCita" class="pmp.lupdup.web.csalud.action.BandejaCitaAction" method="editarFicha">
+			<result name="success" type="tiles">ficha_bandeja_cita_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="guardarFichaBandejaCita" class="pmp.lupdup.web.csalud.action.BandejaCitaAction" method="guardarFicha">
+			<result name="error" type="json" />
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="comboSedeCentroSaludBandejaCita" class="pmp.lupdup.web.csalud.action.BandejaCitaAction" method="sedeCentroSaludCargar">
+			<result name="success" type="tiles">combo_sede_salud_bandeja_cita_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+	</package>
+	
+</struts>

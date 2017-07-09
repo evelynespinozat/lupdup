@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.administrador.mapper.ImagenMapper">
+	<resultMap id="ImagenMap" type="pmp.lupdup.dao.administrador.domain.Imagen">
+		<result column="id_imagen" property="srlIdImagen" jdbcType="INTEGER"/>
+		<result column="nom_descripcion" property="strNomDescripcion" jdbcType="VARCHAR"/>
+		<result column="nom_extension" property="strNomExtension" jdbcType="VARCHAR"/>
+		<result column="num_fecha_ult_mod" property="lngNomFechaUltimaMod" jdbcType="INTEGER"/>
+		<result column="nom_hash" property="strNomHash" jdbcType="VARCHAR"/>
+		<result column="nom_codigo" property="strNomCodigo" jdbcType="VARCHAR"/>
+		<result column="num_tamanio" property="lngNumTamanio" jdbcType="INTEGER"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="ImagenMap" parameterType="pmp.lupdup.dao.administrador.domain.ImagenParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_imagen as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="ImagenMap" parameterType="pmp.lupdup.dao.administrador.domain.ImagenKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_imagen as tab
+		where 1 = 1
+		and id_imagen = #{srlIdImagen,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_imagen_id_imagen_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.administrador.domain.Imagen">
+		insert into lupdup.t_imagen
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			nom_descripcion,
+			nom_extension,
+			num_fecha_ult_mod,
+			nom_hash,
+			nom_codigo,
+			num_tamanio,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="strNomDescripcion != null">
+					#{strNomDescripcion, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomExtension != null">
+					#{strNomExtension, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="lngNomFechaUltimaMod != null">
+					#{lngNomFechaUltimaMod, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomHash != null">
+					#{strNomHash, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomCodigo != null">
+					#{strNomCodigo, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="lngNumTamanio != null">
+					#{lngNumTamanio, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.administrador.domain.Imagen">
+		update lupdup.t_imagen
+		<set>
+			<choose>
+				<when test="strNomDescripcion != null">
+					nom_descripcion = #{strNomDescripcion,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_descripcion = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomExtension != null">
+					nom_extension = #{strNomExtension,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_extension = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="lngNomFechaUltimaMod != null">
+					num_fecha_ult_mod = #{lngNomFechaUltimaMod,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_fecha_ult_mod = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomHash != null">
+					nom_hash = #{strNomHash,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_hash = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomCodigo != null">
+					nom_codigo = #{strNomCodigo,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_codigo = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="lngNumTamanio != null">
+					num_tamanio = #{lngNumTamanio,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_tamanio = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_imagen = #{srlIdImagen,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.administrador.domain.ImagenKey">
+		delete from lupdup.t_imagen
+		where 1 = 1
+		<if test="srlIdImagen != null">
+		and id_imagen = #{srlIdImagen,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_imagen, 
+nom_descripcion, 
+nom_extension, 
+num_fecha_ult_mod, 
+nom_hash, 
+nom_codigo, 
+num_tamanio]]>
+	</sql>
+</mapper>

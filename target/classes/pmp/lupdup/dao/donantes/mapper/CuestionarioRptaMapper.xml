@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.donantes.mapper.CuestionarioRptaMapper">
+	<resultMap id="CuestionarioRptaMap" type="pmp.lupdup.dao.donantes.domain.CuestionarioRpta">
+		<result column="id_donantecuestionariorpta" property="srlIdDonantecuestionariorpta" jdbcType="INTEGER"/>
+		<result column="id_cuestionario" property="intIdCuestionario" jdbcType="INTEGER"/>
+		<result column="id_donante" property="intIdDonante" jdbcType="INTEGER"/>
+		<result column="es_check" property="strEsCheck" jdbcType="VARCHAR"/>
+		<result column="des_respuesta" property="strDesRespuesta" jdbcType="VARCHAR"/>
+		<result column="id_cuestionario_desc" property="strCuestionarioDesc" jdbcType="VARCHAR"/>
+	</resultMap>
+	
+	<select id="selectByDefaultParameter" resultMap="CuestionarioRptaMap" parameterType="pmp.lupdup.dao.donantes.domain.CuestionarioRptaParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_donante_cuestionario_rpta as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	
+	<select id="selectByPrimaryKey" resultMap="CuestionarioRptaMap" parameterType="pmp.lupdup.dao.donantes.domain.CuestionarioRptaKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_donante_cuestionario_rpta as tab
+		where 1 = 1
+		and id_donantecuestionariorpta = #{srlIdDonantecuestionariorpta,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectCuestionarioRptaByDonante" resultMap="CuestionarioRptaMap" parameterType="pmp.lupdup.dao.donantes.domain.CuestionarioRpta" >
+		select 
+			tab.id_donantecuestionariorpta, 
+			tab.id_donante, 
+			tab.es_check, 
+			tab.des_respuesta,
+			c.id_cuestionario, 
+			c.des_cuestionario as id_cuestionario_desc
+		from lupdup.t_cuestionario as c
+		left join lupdup.t_donante_cuestionario_rpta as tab on tab.id_cuestionario = c.id_cuestionario 
+		and tab.id_donante = #{intIdDonante, jdbcType=INTEGER} 
+		where (c.ind_tipo = 18
+		and (select count(*) from lupdup.t_donante_cuestionario_rpta where id_donante = #{intIdDonante, jdbcType=INTEGER}) > 0)
+		or (c.ind_tipo = 17
+		and (select count(*) from lupdup.t_donante_cuestionario_rpta where id_donante = #{intIdDonante, jdbcType=INTEGER}) = 0)
+	</select>
+	
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_donante_cuestionario_rpta_id_donantecuestionariorpta_seq')
+	</select>
+	
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.donantes.domain.CuestionarioRpta">
+		insert into lupdup.t_donante_cuestionario_rpta
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id_cuestionario,
+			id_donante,
+			es_check,
+			des_respuesta,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="intIdCuestionario != null">
+					#{intIdCuestionario, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdDonante != null">
+					#{intIdDonante, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strEsCheck != null">
+					#{strEsCheck, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesRespuesta != null">
+					#{strDesRespuesta, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.donantes.domain.CuestionarioRpta">
+		update lupdup.t_donante_cuestionario_rpta
+		<set>
+			<choose>
+				<when test="intIdCuestionario != null">
+					id_cuestionario = #{intIdCuestionario,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_cuestionario = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdDonante != null">
+					id_donante = #{intIdDonante,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_donante = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strEsCheck != null">
+					es_check = #{strEsCheck,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					es_check = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesRespuesta != null">
+					des_respuesta = #{strDesRespuesta,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_respuesta = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_donantecuestionariorpta = #{srlIdDonantecuestionariorpta,jdbcType=INTEGER}
+	</update>
+	
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.donantes.domain.CuestionarioRptaKey">
+		delete from lupdup.t_donante_cuestionario_rpta
+		where 1 = 1
+		<if test="srlIdDonantecuestionariorpta != null">
+		and id_donantecuestionariorpta = #{srlIdDonantecuestionariorpta,jdbcType=INTEGER}
+		</if>
+	</delete>
+	
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	
+	<sql id="Base_Column_List">
+		<![CDATA[id_donantecuestionariorpta, 
+id_cuestionario, 
+id_donante, 
+es_check, 
+des_respuesta,
+(select c.des_cuestionario from lupdup.t_cuestionario c where tab.id_cuestionario=c.id_cuestionario) as id_cuestionario_desc]]>
+	</sql>
+	
+</mapper>

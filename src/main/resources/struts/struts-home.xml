@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>    
+	<package name="general" namespace="/" extends="principal,json-default,jasperreports-default">
+		
+		<action name="home" class="pmp.lupdup.web.donantes.action.HomeAction" method="inicio">
+			<result name="success" type="tiles">home_inicio</result>
+			<result name="successAuth" type="tiles">home_auth_inicio</result>
+			<interceptor-ref name="basicStack" />  
+		</action>
+		
+	</package>
+</struts>
+

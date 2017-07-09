@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.administrador.mapper.UsuarioMapper">
+	<resultMap id="UsuarioMap" type="pmp.lupdup.dao.administrador.domain.Usuario">
+		<result column="id_usuario" property="srlIdUsuario" jdbcType="INTEGER"/>
+		<result column="id_donante" property="intIdDonante" jdbcType="INTEGER"/>
+		<result column="id_perfil_string" property="intIdPerfilDesc" jdbcType="VARCHAR"/>
+		<result column="id_perfil" property="intIdPerfil" jdbcType="INTEGER"/>
+		<result column="nom_usuario" property="strNomUsuario" jdbcType="VARCHAR"/>
+		<result column="clv_usuario" property="strClvUsuario" jdbcType="VARCHAR"/>
+		<result column="nom_responsable" property="strNomResponsable" jdbcType="VARCHAR"/>
+		<result column="nom_appaterno" property="strNomAppaterno" jdbcType="VARCHAR"/>
+		<result column="nom_apmaterno" property="strNomApmaterno" jdbcType="VARCHAR"/>
+		<result column="des_telefono" property="strDesTelefono" jdbcType="VARCHAR"/>
+		<result column="des_correo" property="strDesCorreo" jdbcType="VARCHAR"/>
+		<result column="des_celular" property="strDesCelular" jdbcType="VARCHAR"/>
+		<result column="ind_activo" property="strIndActivo" jdbcType="VARCHAR"/>
+		<result column="id_centrosalud" property="intIdCentrosalud" jdbcType="INTEGER"/>
+		<result column="id_entidadcolaboradora" property="intIdEntidadcolaboradora" jdbcType="INTEGER"/>
+		<result column="id_sedecentrosalud" property="intIdSedeCentrosalud" jdbcType="INTEGER"/>
+		<result column="id_sedeentidadcolaboradora" property="intIdSedeEntidadcolaboradora" jdbcType="INTEGER"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="UsuarioMap" parameterType="pmp.lupdup.dao.administrador.domain.UsuarioParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_usuario as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="UsuarioMap" parameterType="pmp.lupdup.dao.administrador.domain.UsuarioKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_usuario as tab
+		where 1 = 1
+		and id_usuario = #{srlIdUsuario,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_usuario_id_usuario_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.administrador.domain.Usuario">
+		insert into lupdup.t_usuario
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id_perfil,
+			nom_usuario,
+			clv_usuario,
+			nom_responsable,
+			nom_appaterno,
+			nom_apmaterno,
+			des_telefono,
+			des_correo,
+			des_celular,
+			ind_activo,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="intIdPerfil != null">
+					#{intIdPerfil, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomUsuario != null">
+					#{strNomUsuario, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strClvUsuario != null">
+					#{strClvUsuario, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomResponsable != null">
+					#{strNomResponsable, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomAppaterno != null">
+					#{strNomAppaterno, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomApmaterno != null">
+					#{strNomApmaterno, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesTelefono != null">
+					#{strDesTelefono, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesCorreo != null">
+					#{strDesCorreo, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesCelular != null">
+					#{strDesCelular, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strIndActivo != null">
+					#{strIndActivo, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.administrador.domain.Usuario">
+		update lupdup.t_usuario
+		<set>
+			<choose>
+				<when test="intIdPerfil != null">
+					id_perfil = #{intIdPerfil,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_perfil = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomUsuario != null">
+					nom_usuario = #{strNomUsuario,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_usuario = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strClvUsuario != null">
+					clv_usuario = #{strClvUsuario,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					clv_usuario = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomResponsable != null">
+					nom_responsable = #{strNomResponsable,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_responsable = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomAppaterno != null">
+					nom_appaterno = #{strNomAppaterno,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_appaterno = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomApmaterno != null">
+					nom_apmaterno = #{strNomApmaterno,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_apmaterno = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesTelefono != null">
+					des_telefono = #{strDesTelefono,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_telefono = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesCorreo != null">
+					des_correo = #{strDesCorreo,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_correo = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesCelular != null">
+					des_celular = #{strDesCelular,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_celular = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strIndActivo != null">
+					ind_activo = #{strIndActivo,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					ind_activo = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_usuario = #{srlIdUsuario,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.administrador.domain.UsuarioKey">
+		delete from lupdup.t_usuario
+		where 1 = 1
+		<if test="srlIdUsuario != null">
+		and id_usuario = #{srlIdUsuario,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_usuario, 
+(SELECT d.id_donante FROM lupdup.t_donante d WHERE d.id_usuario = tab.id_usuario) as id_donante, 
+id_perfil, 
+(SELECT ts.nom_perfil FROM lupdup.t_perfil ts WHERE ts.id_perfil = tab.id_perfil) AS id_perfil_string, 
+nom_usuario, 
+clv_usuario, 
+nom_responsable, 
+nom_appaterno, 
+nom_apmaterno, 
+des_telefono, 
+des_correo, 
+des_celular,
+ind_activo,
+id_sedecentrosalud, 
+id_sedeentidadcolaboradora,
+(select ss.id_centrosalud from lupdup.t_sede_salud ss where ss.id_sedesalud = tab.id_sedecentrosalud) as id_centrosalud,
+(select sec.id_entidadcolaboradora from lupdup.t_sede_entidad_colaboradora sec where sec.id_sedeentidad = tab.id_sedeentidadcolaboradora) as id_entidadcolaboradora]]>
+	</sql>
+</mapper>

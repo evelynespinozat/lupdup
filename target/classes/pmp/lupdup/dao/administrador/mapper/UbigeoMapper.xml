@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.administrador.mapper.UbigeoMapper">
+	<resultMap id="UbigeoMap" type="pmp.lupdup.dao.administrador.domain.Ubigeo">
+		<result column="id_ubigeo" property="srlIdUbigeo" jdbcType="INTEGER"/>
+		<result column="id_departamento" property="intIdDepartamento" jdbcType="INTEGER"/>
+		<result column="id_provincia" property="intIdProvincia" jdbcType="INTEGER"/>
+		<result column="id_distrito" property="intIdDistrito" jdbcType="INTEGER"/>
+		<result column="des_ubigeo" property="strDesUbigeo" jdbcType="VARCHAR"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="UbigeoMap" parameterType="pmp.lupdup.dao.administrador.domain.UbigeoParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_ubigeo as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="UbigeoMap" parameterType="pmp.lupdup.dao.administrador.domain.UbigeoKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_ubigeo as tab
+		where 1 = 1
+		and id_ubigeo = #{srlIdUbigeo,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_ubigeo_id_ubigeo_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.administrador.domain.Ubigeo">
+		insert into lupdup.t_ubigeo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id_departamento,
+			id_provincia,
+			id_distrito,
+			des_ubigeo,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="intIdDepartamento != null">
+					#{intIdDepartamento, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdProvincia != null">
+					#{intIdProvincia, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdDistrito != null">
+					#{intIdDistrito, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesUbigeo != null">
+					#{strDesUbigeo, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.administrador.domain.Ubigeo">
+		update lupdup.t_ubigeo
+		<set>
+			<choose>
+				<when test="intIdDepartamento != null">
+					id_departamento = #{intIdDepartamento,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_departamento = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdProvincia != null">
+					id_provincia = #{intIdProvincia,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_provincia = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdDistrito != null">
+					id_distrito = #{intIdDistrito,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_distrito = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesUbigeo != null">
+					des_ubigeo = #{strDesUbigeo,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_ubigeo = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_ubigeo = #{srlIdUbigeo,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.administrador.domain.UbigeoKey">
+		delete from lupdup.t_ubigeo
+		where 1 = 1
+		<if test="srlIdUbigeo != null">
+		and id_ubigeo = #{srlIdUbigeo,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_ubigeo, 
+id_departamento, 
+id_provincia, 
+id_distrito, 
+des_ubigeo]]>
+	</sql>
+</mapper>

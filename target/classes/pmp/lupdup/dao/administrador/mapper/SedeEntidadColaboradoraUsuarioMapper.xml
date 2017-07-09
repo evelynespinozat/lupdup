@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.administrador.mapper.SedeEntidadColaboradoraUsuarioMapper">
+	<resultMap id="SedeEntidadColaboradoraUsuarioMap" type="pmp.lupdup.dao.administrador.domain.SedeEntidadColaboradoraUsuario">
+		<result column="id_usuario" property="intIdUsuario" jdbcType="INTEGER"/>
+		<result column="id_sedeentidad" property="intIdSedeentidad" jdbcType="INTEGER"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="SedeEntidadColaboradoraUsuarioMap" parameterType="pmp.lupdup.dao.administrador.domain.SedeEntidadColaboradoraUsuarioParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_sede_entidad_colaboradora_usuario as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="SedeEntidadColaboradoraUsuarioMap" parameterType="pmp.lupdup.dao.administrador.domain.SedeEntidadColaboradoraUsuarioKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_sede_entidad_colaboradora_usuario as tab
+		where 1 = 1
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.administrador.domain.SedeEntidadColaboradoraUsuario">
+		insert into lupdup.t_sede_entidad_colaboradora_usuario
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id_usuario,
+			id_sedeentidad,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="intIdUsuario != null">
+					#{intIdUsuario, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdSedeentidad != null">
+					#{intIdSedeentidad, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.administrador.domain.SedeEntidadColaboradoraUsuario">
+		update lupdup.t_sede_entidad_colaboradora_usuario
+		<set>
+			<choose>
+				<when test="intIdUsuario != null">
+					id_usuario = #{intIdUsuario,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_usuario = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdSedeentidad != null">
+					id_sedeentidad = #{intIdSedeentidad,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_sedeentidad = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.administrador.domain.SedeEntidadColaboradoraUsuarioKey">
+		delete from lupdup.t_sede_entidad_colaboradora_usuario
+		where 1 = 1
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_usuario, 
+id_sedeentidad]]>
+	</sql>
+</mapper>

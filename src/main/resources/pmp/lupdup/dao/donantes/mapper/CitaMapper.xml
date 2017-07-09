@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.donantes.mapper.CitaMapper">
+	<resultMap id="CitaMap" type="pmp.lupdup.dao.donantes.domain.Cita">
+		<result column="id_cita" property="srlIdCita" jdbcType="INTEGER"/>
+		<result column="id_sede" property="intIdSede" jdbcType="INTEGER"/>
+		<result column="id_donante" property="intIdDonante" jdbcType="INTEGER"/>
+		<result column="fec_cita" property="dteFecCita" jdbcType="DATE"/>
+		<result column="hor_cita" property="strHorCita" jdbcType="VARCHAR"/>
+		<result column="id_estado" property="intIdEstado" jdbcType="INTEGER"/>
+		<result column="id_estado_desc" property="intIdEstadoDesc" jdbcType="VARCHAR"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="CitaMap" parameterType="pmp.lupdup.dao.donantes.domain.CitaParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_cita as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="CitaMap" parameterType="pmp.lupdup.dao.donantes.domain.CitaKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_cita as tab
+		where 1 = 1
+		and id_cita = #{srlIdCita,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_cita_id_cita_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.donantes.domain.Cita">
+		insert into lupdup.t_cita
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id_sede,
+			id_donante,
+			fec_cita,
+			hor_cita,
+			id_estado,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="intIdSede != null">
+					#{intIdSede, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdDonante != null">
+					#{intIdDonante, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecCita != null">
+					#{dteFecCita, jdbcType=DATE},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strHorCita != null">
+					#{strHorCita, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdEstado != null">
+					#{intIdEstado, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.donantes.domain.Cita">
+		update lupdup.t_cita
+		<set>
+			<choose>
+				<when test="intIdSede != null">
+					id_sede = #{intIdSede,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_sede = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdDonante != null">
+					id_donante = #{intIdDonante,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_donante = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecCita != null">
+					fec_cita = #{dteFecCita,jdbcType=DATE},
+				</when>
+				<otherwise>
+					fec_cita = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strHorCita != null">
+					hor_cita = #{strHorCita,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					hor_cita = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdEstado != null">
+					id_estado = #{intIdEstado,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_estado = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_cita = #{srlIdCita,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.donantes.domain.CitaKey">
+		delete from lupdup.t_cita
+		where 1 = 1
+		<if test="srlIdCita != null">
+		and id_cita = #{srlIdCita,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_cita, 
+id_sede, 
+id_donante, 
+fec_cita, 
+hor_cita,
+id_estado,
+(select c.des_indicador from lupdup.t_catalogo c where c.cod_indicador = 6 and c.id_catalogo=tab.id_estado) as id_estado_desc
+]]>
+	</sql>
+</mapper>

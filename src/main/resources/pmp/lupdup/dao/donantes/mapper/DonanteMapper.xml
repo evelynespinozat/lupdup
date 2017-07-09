@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.donantes.mapper.DonanteMapper">
+	<resultMap id="DonanteMap" type="pmp.lupdup.dao.donantes.domain.Donante">
+		<result column="id_donante" property="srlIdDonante" jdbcType="INTEGER"/>
+		<result column="id_usuario" property="intIdUsuario" jdbcType="INTEGER"/>
+		<result column="num_dni" property="strNumDni" jdbcType="VARCHAR"/>
+		<result column="nom_nombre" property="strNomNombre" jdbcType="VARCHAR"/>
+		<result column="nom_appaterno" property="strNomAppaterno" jdbcType="VARCHAR"/>
+		<result column="nom_apmaterno" property="strNomApmaterno" jdbcType="VARCHAR"/>
+		<result column="fec_nacimiento" property="dteFecNacimiento" jdbcType="DATE"/>
+		<result column="ind_estadocivil_string" property="intIndEstadocivilDesc" jdbcType="VARCHAR"/>
+		<result column="ind_estadocivil" property="intIndEstadocivil" jdbcType="INTEGER"/>
+		<result column="ind_sexo_string" property="intIndSexoDesc" jdbcType="VARCHAR"/>
+		<result column="ind_sexo" property="intIndSexo" jdbcType="INTEGER"/>
+		<result column="des_gradoinstruc_string" property="intDesGradoinstrucDesc" jdbcType="VARCHAR"/>
+		<result column="des_gradoinstruc" property="intDesGradoinstruc" jdbcType="INTEGER"/>
+		<result column="des_ocupacion" property="strDesOcupacion" jdbcType="VARCHAR"/>
+		<result column="ind_donante_string" property="intIndDonanteDesc" jdbcType="VARCHAR"/>
+		<result column="ind_donante" property="intIndDonante" jdbcType="INTEGER"/>
+		<result column="num_celular" property="strNumCelular" jdbcType="VARCHAR"/>
+		<result column="num_celular2" property="strNumCelular2" jdbcType="VARCHAR"/>
+		<result column="num_telefono" property="strNumTelefono" jdbcType="VARCHAR"/>
+		<result column="des_correo" property="strDesCorreo" jdbcType="VARCHAR"/>
+		<result column="des_direccion" property="strDesDireccion" jdbcType="VARCHAR"/>
+		<result column="cnt_puntos" property="intCntPuntos" jdbcType="INTEGER"/>
+		<result column="ind_tipo" property="intIndTipo" jdbcType="INTEGER"/>
+		<result column="id_ubigeo" property="intIdUbigeo" jdbcType="INTEGER"/>
+		<result column="id_ubigeo_departamento" property="intIdDepartamento" jdbcType="INTEGER"/>
+		<result column="id_ubigeo_privincia" property="intIdProvincia" jdbcType="INTEGER"/>
+		<result column="ind_activo" property="strIndActivo" jdbcType="VARCHAR"/>
+		<result column="ind_ubicacion_str" property="strIndUbicacion" jdbcType="VARCHAR"/>
+		<result column="ind_zoom" property="intIndZoom" jdbcType="INTEGER"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="DonanteMap" parameterType="pmp.lupdup.dao.donantes.domain.DonanteParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_donante as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="DonanteMap" parameterType="pmp.lupdup.dao.donantes.domain.DonanteKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_donante as tab
+		where 1 = 1
+		and id_donante = #{srlIdDonante,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_donante_id_donante_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.donantes.domain.Donante">
+		insert into lupdup.t_donante
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id_usuario,
+			nom_nombre,
+			nom_appaterno,
+			nom_apmaterno,
+			fec_nacimiento,
+			ind_estadocivil,
+			ind_sexo,
+			des_gradoinstruc,
+			des_ocupacion,
+			ind_donante,
+			num_celular,
+			num_celular2,
+			num_telefono,
+			des_correo,
+			des_direccion,
+			cnt_puntos,
+			ind_tipo,
+			num_dni,
+			id_ubigeo,
+			ind_activo,
+			ind_ubicacion,
+			ind_zoom,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="intIdUsuario != null">
+					#{intIdUsuario, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomNombre != null">
+					#{strNomNombre, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomAppaterno != null">
+					#{strNomAppaterno, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomApmaterno != null">
+					#{strNomApmaterno, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecNacimiento != null">
+					#{dteFecNacimiento, jdbcType=DATE},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndEstadocivil != null">
+					#{intIndEstadocivil, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndSexo != null">
+					#{intIndSexo, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intDesGradoinstruc != null">
+					#{intDesGradoinstruc, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesOcupacion != null">
+					#{strDesOcupacion, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndDonante != null">
+					#{intIndDonante, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumCelular != null">
+					#{strNumCelular, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumCelular2 != null">
+					#{strNumCelular2, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumTelefono != null">
+					#{strNumTelefono, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesCorreo != null">
+					#{strDesCorreo, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesDireccion != null">
+					#{strDesDireccion, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCntPuntos != null">
+					#{intCntPuntos, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndTipo != null">
+					#{intIndTipo, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumDni != null">
+					#{strNumDni, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdUbigeo != null">
+					#{intIdUbigeo, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strIndActivo != null">
+					#{strIndActivo, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strIndUbicacion != null">
+					ST_GeomFromText(#{strIndUbicacion, jdbcType=VARCHAR}),
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndZoom != null">
+					#{intIndZoom, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.donantes.domain.Donante">
+		update lupdup.t_donante
+		<set>
+			<choose>
+				<when test="intIdUsuario != null">
+					id_usuario = #{intIdUsuario,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_usuario = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomNombre != null">
+					nom_nombre = #{strNomNombre,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_nombre = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomAppaterno != null">
+					nom_appaterno = #{strNomAppaterno,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_appaterno = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomApmaterno != null">
+					nom_apmaterno = #{strNomApmaterno,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_apmaterno = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecNacimiento != null">
+					fec_nacimiento = #{dteFecNacimiento,jdbcType=DATE},
+				</when>
+				<otherwise>
+					fec_nacimiento = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndEstadocivil != null">
+					ind_estadocivil = #{intIndEstadocivil,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					ind_estadocivil = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndSexo != null">
+					ind_sexo = #{intIndSexo,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					ind_sexo = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intDesGradoinstruc != null">
+					des_gradoinstruc = #{intDesGradoinstruc,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					des_gradoinstruc = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesOcupacion != null">
+					des_ocupacion = #{strDesOcupacion,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_ocupacion = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndDonante != null">
+					ind_donante = #{intIndDonante,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					ind_donante = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumCelular != null">
+					num_celular = #{strNumCelular,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					num_celular = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumCelular2 != null">
+					num_celular2 = #{strNumCelular2,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					num_celular2 = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumTelefono != null">
+					num_telefono = #{strNumTelefono,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					num_telefono = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesCorreo != null">
+					des_correo = #{strDesCorreo,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_correo = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesDireccion != null">
+					des_direccion = #{strDesDireccion,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_direccion = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCntPuntos != null">
+					cnt_puntos = #{intCntPuntos,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					cnt_puntos = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndTipo != null">
+					ind_tipo = #{intIndTipo,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					ind_tipo = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumDni != null">
+					num_dni = #{strNumDni,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					num_dni = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdUbigeo != null">
+					id_ubigeo = #{intIdUbigeo,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_ubigeo = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strIndActivo != null">
+					ind_activo = #{strIndActivo,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					ind_activo = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strIndUbicacion != null">
+					ind_ubicacion = ST_GeomFromText(#{strIndUbicacion,jdbcType=VARCHAR}),
+				</when>
+				<otherwise>
+					ind_ubicacion = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndZoom != null">
+					ind_zoom = #{intIndZoom,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					ind_zoom = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_donante = #{srlIdDonante,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.donantes.domain.DonanteKey">
+		delete from lupdup.t_donante
+		where 1 = 1
+		<if test="srlIdDonante != null">
+		and id_donante = #{srlIdDonante,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_donante, 
+id_usuario, 
+nom_nombre, 
+nom_appaterno, 
+nom_apmaterno, 
+fec_nacimiento, 
+ind_estadocivil, 
+(SELECT ts.des_indicador FROM lupdup.t_catalogo ts WHERE ts.id_catalogo = tab.ind_estadocivil) AS ind_estadocivil_string, 
+ind_sexo, 
+(SELECT ts.des_indicador FROM lupdup.t_catalogo ts WHERE ts.id_catalogo = tab.ind_sexo) AS ind_sexo_string, 
+des_gradoinstruc, 
+(SELECT ts.des_indicador FROM lupdup.t_catalogo ts WHERE ts.id_catalogo = tab.des_gradoinstruc) AS des_gradoinstruc_string, 
+des_ocupacion, 
+ind_donante, 
+(SELECT ts.des_indicador FROM lupdup.t_catalogo ts WHERE ts.id_catalogo = tab.ind_donante) AS ind_donante_string, 
+num_celular, 
+num_celular2, 
+num_telefono, 
+des_correo, 
+des_direccion, 
+cnt_puntos, 
+ind_tipo,
+num_dni,
+id_ubigeo,
+(select u.id_departamento from lupdup.t_ubigeo u where u.id_ubigeo = tab.id_ubigeo) AS id_ubigeo_departamento,
+(select u.id_provincia from lupdup.t_ubigeo u where u.id_ubigeo = tab.id_ubigeo) AS id_ubigeo_privincia,
+ind_activo,
+ST_AsText(ind_ubicacion) as ind_ubicacion_str,
+ind_zoom]]>
+	</sql>
+</mapper>

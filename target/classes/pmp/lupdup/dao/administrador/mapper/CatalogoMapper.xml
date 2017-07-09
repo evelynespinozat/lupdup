@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.administrador.mapper.CatalogoMapper">
+	<resultMap id="CatalogoMap" type="pmp.lupdup.dao.administrador.domain.Catalogo">
+		<result column="id_catalogo" property="srlIdCatalogo" jdbcType="INTEGER"/>
+		<result column="des_indicador" property="strDesIndicador" jdbcType="VARCHAR"/>
+		<result column="nom_indicador" property="strNomIndicador" jdbcType="VARCHAR"/>
+		<result column="nom_abreviatura" property="strNomAbreviatura" jdbcType="VARCHAR"/>
+		<result column="num_valor" property="intNumValor" jdbcType="INTEGER"/>
+		<result column="cod_indicador" property="intCodIndicador" jdbcType="INTEGER"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="CatalogoMap" parameterType="pmp.lupdup.dao.administrador.domain.CatalogoParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_catalogo as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="CatalogoMap" parameterType="pmp.lupdup.dao.administrador.domain.CatalogoKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_catalogo as tab
+		where 1 = 1
+		and id_catalogo = #{srlIdCatalogo,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_catalogo_id_catalogo_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.administrador.domain.Catalogo">
+		insert into lupdup.t_catalogo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			des_indicador,
+			nom_indicador,
+			nom_abreviatura,
+			num_valor,
+			cod_indicador,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="strDesIndicador != null">
+					#{strDesIndicador, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomIndicador != null">
+					#{strNomIndicador, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomAbreviatura != null">
+					#{strNomAbreviatura, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumValor != null">
+					#{intNumValor, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCodIndicador != null">
+					#{intCodIndicador, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.administrador.domain.Catalogo">
+		update lupdup.t_catalogo
+		<set>
+			<choose>
+				<when test="strDesIndicador != null">
+					des_indicador = #{strDesIndicador,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_indicador = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomIndicador != null">
+					nom_indicador = #{strNomIndicador,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_indicador = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNomAbreviatura != null">
+					nom_abreviatura = #{strNomAbreviatura,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_abreviatura = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumValor != null">
+					num_valor = #{intNumValor,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_valor = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCodIndicador != null">
+					cod_indicador = #{intCodIndicador,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					cod_indicador = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_catalogo = #{srlIdCatalogo,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.administrador.domain.CatalogoKey">
+		delete from lupdup.t_catalogo
+		where 1 = 1
+		<if test="srlIdCatalogo != null">
+		and id_catalogo = #{srlIdCatalogo,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_catalogo, 
+des_indicador, 
+nom_indicador, 
+nom_abreviatura, 
+num_valor, 
+cod_indicador]]>
+	</sql>
+</mapper>

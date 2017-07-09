@@ -1,0 +1,472 @@
+<?xml version="1.0"    encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	
+	<definition name="donantesLayout" template="/layouts/donantesLayout.jsp">
+		<put-attribute name="title" value=".::Lupdup::."/>
+		<put-attribute name="header" value="/layouts/donantesHeader.jsp"/>
+		<put-attribute name="header_hide" value="/layouts/donantesHeaderHide.jsp"/>
+		<put-attribute name="content" value=""/>
+		<put-list-attribute name="javscr">
+		</put-list-attribute>
+		<put-list-attribute name="styles">
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="administradorLayout" template="/layouts/administradorLayout.jsp">
+		<put-attribute name="title" value=".::Lupdup::."/>
+		<put-attribute name="header" value="/layouts/administradorHeader.jsp"/>
+		<put-attribute name="header_hide" value="/layouts/administradorHeaderHide.jsp"/>
+		<put-attribute name="content" value=""/>
+		<put-list-attribute name="javscr">
+		</put-list-attribute>
+		<put-list-attribute name="styles">
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="csaludLayout" template="/layouts/csaludLayout.jsp">
+		<put-attribute name="title" value=".::Lupdup::."/>
+		<put-attribute name="header" value="/layouts/csaludHeader.jsp"/>
+		<put-attribute name="header_hide" value="/layouts/csaludHeaderHide.jsp"/>
+		<put-attribute name="content" value=""/>
+		<put-list-attribute name="javscr">
+		</put-list-attribute>
+		<put-list-attribute name="styles">
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="ecooperanteLayout" template="/layouts/ecooperanteLayout.jsp">
+		<put-attribute name="title" value=".::Lupdup::."/>
+		<put-attribute name="header" value="/layouts/ecooperanteHeader.jsp"/>
+		<put-attribute name="header_hide" value="/layouts/ecooperanteHeaderHide.jsp"/>
+		<put-attribute name="content" value=""/>
+		<put-list-attribute name="javscr">
+		</put-list-attribute>
+		<put-list-attribute name="styles">
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="loginLayout" template="/layouts/loginLayout.jsp">
+		<put-attribute name="title" value=".::Lupdup::."/>
+		<put-attribute name="header" value="/layouts/loginHeader.jsp"/>
+		<put-attribute name="content" value=""/>
+		<put-list-attribute name="javscr">
+		</put-list-attribute>
+		<put-list-attribute name="styles">
+		</put-list-attribute>
+	</definition>
+	
+	<!-- HOME -->
+	<definition name="home_inicio" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/principal/index.jsp"/>
+		<put-list-attribute name="styles">
+			<add-attribute value="tools/html_template/css/revolution-slider.css"/>
+		</put-list-attribute>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/seguridad/autenticacion.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+			<add-attribute value="tools/html_template/js/revolution.min.js"/>
+			<add-attribute value="tools/html_template/js/bxslider.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<!-- HOME -->
+	<definition name="home_auth_inicio" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/principal/indexAuth.jsp"/>
+		<put-list-attribute name="styles">
+			<add-attribute value="tools/html_template/css/revolution-slider.css"/>
+		</put-list-attribute>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/citaForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+			<add-attribute value="tools/html_template/js/revolution.min.js"/>
+			<add-attribute value="tools/html_template/js/bxslider.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="autenticacion_usuario" extends="loginLayout">
+		<put-attribute name="content" value="/paginas/seguridad/autenticacion.jsp"/>
+		<put-list-attribute name="styles">
+			<add-attribute value="tools/html_template/css/revolution-slider.css"/>
+		</put-list-attribute>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/seguridad/autenticacion.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+			<add-attribute value="tools/html_template/js/revolution.min.js"/>
+			<add-attribute value="tools/html_template/js/bxslider.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	
+	
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	<!-- Allegados -->
+	<definition name="allegados_inicio" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/allegadosInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/allegadosInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="allegados_form" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/allegadosForm.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/allegadosForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+
+	
+	<!-- Cita -->
+	<definition name="cita_inicio" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/citaInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/citaInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="cita_form" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/citaForm.jsp"/>
+		<put-list-attribute name="styles">
+			<add-attribute value="tools/html_template/css/revolution-slider.css"/>
+		</put-list-attribute>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/citaForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+			<add-attribute value="tools/html_template/js/revolution.min.js"/>
+			<add-attribute value="tools/html_template/js/bxslider.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="cita_hora_combo_form" template="/paginas/donantes/citaHoraCombo.jsp"></definition>
+	
+	<!-- Club -->
+	<definition name="donante_campania_inicio" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/donanteCampaniaInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/donanteCampaniaInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="donante_campania_form" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/donanteCampaniaForm.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/donanteCampaniaForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+
+	
+	<!-- Cuestionario -->
+	<definition name="cuestionario_rpta_inicio" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/cuestionarioRptaInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/cuestionarioRptaInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="cuestionario_rpta_form" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/cuestionarioRptaForm.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/cuestionarioRptaForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+
+	
+	<!-- Detalle Ficha -->
+	<definition name="detalle_ficha_form" template="/paginas/donantes/detalleFichaForm.jsp"></definition>
+
+	
+	<!-- Donante -->
+	<definition name="donante_inicio" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/donanteInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/donanteInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="donante_form" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/donanteForm.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/donanteForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	
+	<!-- Historial Puntos -->
+	<definition name="historial_puntos_inicio" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/historialPuntosInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/historialPuntosInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="estadistica_puntos_inicio" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/estadisticaPuntosInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/estadisticaPuntosInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	
+	<!-- Resultados -->
+	<definition name="ficha_resultados_inicio" extends="donantesLayout">
+		<put-attribute name="content" value="/paginas/donantes/fichaResultadosInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/donantes/fichaResultadosInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	
+	
+	<!-- Centro Salud -->
+	<definition name="centro_salud_inicio" extends="administradorLayout">
+		<put-attribute name="content" value="/paginas/administrador/centroSaludInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/administrador/centroSaludInicio.js"/>
+			<add-attribute value="js/administrador/sedeSaludInicio.js"/>
+			<add-attribute value="js/administrador/usuarioCentroSaludInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="centro_salud_form" extends="administradorLayout">
+		<put-attribute name="content" value="/paginas/administrador/centroSaludForm.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/administrador/centroSaludForm.js"/>
+			<add-attribute value="js/administrador/sedeSaludInicio.js"/>
+			<add-attribute value="js/administrador/sedeSaludForm.js"/>
+			<add-attribute value="js/administrador/usuarioCentroSaludInicio.js"/>
+			<add-attribute value="js/administrador/usuarioCentroSaludForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+
+	
+	<!-- Cuestionario -->
+	<definition name="cuestionario_inicio" extends="administradorLayout">
+		<put-attribute name="content" value="/paginas/administrador/cuestionarioInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/administrador/cuestionarioInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="cuestionario_form" extends="administradorLayout">
+		<put-attribute name="content" value="/paginas/administrador/cuestionarioForm.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/administrador/cuestionarioForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+
+	
+	<!-- Entidad Colaboradora -->
+	<definition name="entidad_colaboradora_inicio" extends="administradorLayout">
+		<put-attribute name="content" value="/paginas/administrador/entidadColaboradoraInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/administrador/entidadColaboradoraInicio.js"/>
+			<add-attribute value="js/administrador/sedeEntidadColaboradoraInicio.js"/>
+			<add-attribute value="js/administrador/usuarioEntidadColaboradoraInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="entidad_colaboradora_form" extends="administradorLayout">
+		<put-attribute name="content" value="/paginas/administrador/entidadColaboradoraForm.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/administrador/entidadColaboradoraForm.js"/>
+			<add-attribute value="js/administrador/sedeEntidadColaboradoraInicio.js"/>
+			<add-attribute value="js/administrador/sedeEntidadColaboradoraForm.js"/>
+			<add-attribute value="js/administrador/usuarioEntidadColaboradoraInicio.js"/>
+			<add-attribute value="js/administrador/usuarioEntidadColaboradoraForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+
+	
+	<!-- Imagen -->
+	<definition name="imagen_inicio" extends="administradorLayout">
+		<put-attribute name="content" value="/paginas/administrador/imagenInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/administrador/imagenInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="imagen_form" extends="administradorLayout">
+		<put-attribute name="content" value="/paginas/administrador/imagenForm.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/administrador/imagenForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+
+	
+	<!-- Sede Entidad Colaboradora -->
+	<definition name="sede_entidad_colaboradora_form" template="/paginas/administrador/sedeEntidadColaboradoraForm.jsp"></definition>
+
+	
+	<!-- Sede Salud -->
+	<definition name="sede_salud_form" template="/paginas/administrador/sedeSaludForm.jsp"></definition>
+
+	
+	<!-- Usuario -->
+	<definition name="usuario_inicio" extends="administradorLayout">
+		<put-attribute name="content" value="/paginas/administrador/usuarioInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/administrador/usuarioInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="usuario_form" extends="administradorLayout">
+		<put-attribute name="content" value="/paginas/administrador/usuarioForm.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/administrador/usuarioForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+
+	
+	<!-- Bandeja citas -->
+	<definition name="bandeja_cita_inicio" extends="csaludLayout">
+		<put-attribute name="content" value="/paginas/csalud/bandejaCitaInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/csalud/bandejaCitaInicio.js"/>
+			<add-attribute value="js/csalud/fichaBandejaCitaForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="bandeja_cita_form" extends="csaludLayout">
+		<put-attribute name="content" value="/paginas/csalud/bandejaCitaForm.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/csalud/bandejaCitaForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="combo_sede_salud_bandeja_cita_form" template="/paginas/csalud/comboSedeSaludBandejaCitaForm.jsp"></definition>
+	
+	<definition name="ficha_bandeja_cita_form" template="/paginas/csalud/fichaBandejaCitaForm.jsp"></definition>
+	
+	<!-- Campania -->
+	<definition name="campania_cooperante_inicio" extends="ecooperanteLayout">
+		<put-attribute name="content" value="/paginas/ecooperante/campaniaCooperanteInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/ecooperante/campaniaCooperanteInicio.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="campania_cooperante_form" extends="ecooperanteLayout">
+		<put-attribute name="content" value="/paginas/ecooperante/campaniaCooperanteForm.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/ecooperante/campaniaCooperanteForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	
+	<!-- Donantes en campana -->
+	<definition name="club_donante_campania_inicio" extends="ecooperanteLayout">
+		<put-attribute name="content" value="/paginas/ecooperante/clubDonanteCampaniaInicio.jsp"/>
+		<put-list-attribute name="javscr">
+			<add-attribute value="js/ecooperante/clubDonanteCampaniaInicio.js"/>
+			<add-attribute value="js/ecooperante/clubDonanteCampaniaForm.js"/>
+			<add-attribute value="js/comun.js"/>
+			<add-attribute value="js/comunBuscar.js"/>
+		</put-list-attribute>
+	</definition>
+	
+	<definition name="club_donante_campania_form" template="/paginas/ecooperante/clubDonanteCampaniaForm.jsp"></definition>
+<!-- 	<definition name="club_donante_campania_form" extends="ecooperanteLayout"> -->
+<!-- 		<put-attribute name="content" value="/paginas/ecooperante/clubDonanteCampaniaForm.jsp"/> -->
+<!-- 		<put-list-attribute name="javscr"> -->
+<!-- 			<add-attribute value="js/ecooperante/clubDonanteCampaniaForm.js"/> -->
+<!-- 			<add-attribute value="js/comun.js"/> -->
+<!-- 			<add-attribute value="js/comunBuscar.js"/> -->
+<!-- 		</put-list-attribute> -->
+<!-- 	</definition> -->
+	
+	<definition name="donante_ubigeo_combo_provincia_form" template="/paginas/donantes/donanteUbigeoComboProvinciaForm.jsp"></definition>
+	
+	<definition name="donante_ubigeo_combo_distrito_form" template="/paginas/donantes/donanteUbigeoComboDistritoForm.jsp"></definition>
+	
+	<!-- Usuario -->
+	<definition name="usuario_centro_salud_form" template="/paginas/administrador/usuarioCentroSaludForm.jsp"></definition>
+	
+	<!-- Usuario -->
+	<definition name="usuario_entidad_colaboradora_form" template="/paginas/administrador/usuarioEntidadColaboradoraForm.jsp"></definition>
+	
+</tiles-definitions>

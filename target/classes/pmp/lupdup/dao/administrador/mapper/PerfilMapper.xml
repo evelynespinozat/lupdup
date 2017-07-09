@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.administrador.mapper.PerfilMapper">
+	<resultMap id="PerfilMap" type="pmp.lupdup.dao.administrador.domain.Perfil">
+		<result column="id_perfil" property="srlIdPerfil" jdbcType="INTEGER"/>
+		<result column="nom_perfil" property="strNomPerfil" jdbcType="VARCHAR"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="PerfilMap" parameterType="pmp.lupdup.dao.administrador.domain.PerfilParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_perfil as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="PerfilMap" parameterType="pmp.lupdup.dao.administrador.domain.PerfilKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_perfil as tab
+		where 1 = 1
+		and id_perfil = #{srlIdPerfil,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_perfil_id_perfil_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.administrador.domain.Perfil">
+		insert into lupdup.t_perfil
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			nom_perfil,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="strNomPerfil != null">
+					#{strNomPerfil, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.administrador.domain.Perfil">
+		update lupdup.t_perfil
+		<set>
+			<choose>
+				<when test="strNomPerfil != null">
+					nom_perfil = #{strNomPerfil,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_perfil = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_perfil = #{srlIdPerfil,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.administrador.domain.PerfilKey">
+		delete from lupdup.t_perfil
+		where 1 = 1
+		<if test="srlIdPerfil != null">
+		and id_perfil = #{srlIdPerfil,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_perfil, 
+nom_perfil]]>
+	</sql>
+</mapper>

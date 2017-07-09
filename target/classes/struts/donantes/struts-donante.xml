@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<package name="donante" namespace="/" extends="principal">
+		<action name="donante" class="pmp.lupdup.web.donantes.action.DonanteAction" method="inicio">
+			<result name="success" type="tiles" >donante_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="buscarDonante" class="pmp.lupdup.web.donantes.action.DonanteAction" method="buscar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="nuevoDonante" class="pmp.lupdup.web.donantes.action.DonanteAction" method="nuevo">
+			<result name="success" type="tiles">donante_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="editarDonante" class="pmp.lupdup.web.donantes.action.DonanteAction" method="editar">
+			<result name="success" type="tiles">donante_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="guardarDonante" class="pmp.lupdup.web.donantes.action.DonanteAction" method="guardar">
+			<result name="error" type="json" />
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="eliminarDonante" class="pmp.lupdup.web.donantes.action.DonanteAction" method="eliminar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="donanteUbigeoProvinciaCargar" class="pmp.lupdup.web.donantes.action.DonanteAction" method="ubigeoProvinciaCargar">
+			<result name="success" type="tiles">donante_ubigeo_combo_provincia_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="donanteUbigeoDistritoCargar" class="pmp.lupdup.web.donantes.action.DonanteAction" method="ubigeoDistritoCargar">
+			<result name="success" type="tiles">donante_ubigeo_combo_distrito_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+	</package>
+	
+</struts>

@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.donantes.mapper.HistorialPuntosMapper">
+	<resultMap id="HistorialPuntosMap" type="pmp.lupdup.dao.donantes.domain.HistorialPuntos">
+		<result column="id_historialpuntos" property="srlIdHistorialpuntos" jdbcType="INTEGER"/>
+		<result column="cnt_puntoganado" property="intCntPuntoganado" jdbcType="INTEGER"/>
+		<result column="cnt_puntoperdido" property="intCntPuntoperdido" jdbcType="INTEGER"/>
+		<result column="fec_punto" property="dteFecPunto" jdbcType="DATE"/>
+		<result column="id_donante" property="intIdDonante" jdbcType="INTEGER"/>
+		<result column="ind_tipopunto" property="intIndTipopunto" jdbcType="INTEGER"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="HistorialPuntosMap" parameterType="pmp.lupdup.dao.donantes.domain.HistorialPuntosParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_historial_puntos as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="HistorialPuntosMap" parameterType="pmp.lupdup.dao.donantes.domain.HistorialPuntosKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_historial_puntos as tab
+		where 1 = 1
+		and id_historialpuntos = #{srlIdHistorialpuntos,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_historial_puntos_id_historialpuntos_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.donantes.domain.HistorialPuntos">
+		insert into lupdup.t_historial_puntos
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			cnt_puntoganado,
+			cnt_puntoperdido,
+			fec_punto,
+			id_donante,
+			ind_tipopunto,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="intCntPuntoganado != null">
+					#{intCntPuntoganado, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCntPuntoperdido != null">
+					#{intCntPuntoperdido, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecPunto != null">
+					#{dteFecPunto, jdbcType=DATE},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdDonante != null">
+					#{intIdDonante, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndTipopunto != null">
+					#{intIndTipopunto, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.donantes.domain.HistorialPuntos">
+		update lupdup.t_historial_puntos
+		<set>
+			<choose>
+				<when test="intCntPuntoganado != null">
+					cnt_puntoganado = #{intCntPuntoganado,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					cnt_puntoganado = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intCntPuntoperdido != null">
+					cnt_puntoperdido = #{intCntPuntoperdido,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					cnt_puntoperdido = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteFecPunto != null">
+					fec_punto = #{dteFecPunto,jdbcType=DATE},
+				</when>
+				<otherwise>
+					fec_punto = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdDonante != null">
+					id_donante = #{intIdDonante,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_donante = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndTipopunto != null">
+					ind_tipopunto = #{intIndTipopunto,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					ind_tipopunto = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_historialpuntos = #{srlIdHistorialpuntos,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.donantes.domain.HistorialPuntosKey">
+		delete from lupdup.t_historial_puntos
+		where 1 = 1
+		<if test="srlIdHistorialpuntos != null">
+		and id_historialpuntos = #{srlIdHistorialpuntos,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_historialpuntos, 
+cnt_puntoganado, 
+cnt_puntoperdido, 
+fec_punto, 
+id_donante, 
+ind_tipopunto]]>
+	</sql>
+</mapper>

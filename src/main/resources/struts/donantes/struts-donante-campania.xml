@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<package name="donante-campania" namespace="/" extends="principal">
+		<action name="donanteCampania" class="pmp.lupdup.web.donantes.action.DonanteCampaniaAction" method="inicio">
+			<result name="success" type="tiles" >donante_campania_inicio</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="buscarDonanteCampania" class="pmp.lupdup.web.donantes.action.DonanteCampaniaAction" method="buscar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="nuevoDonanteCampania" class="pmp.lupdup.web.donantes.action.DonanteCampaniaAction" method="nuevo">
+			<result name="success" type="tiles">donante_campania_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="editarDonanteCampania" class="pmp.lupdup.web.donantes.action.DonanteCampaniaAction" method="editar">
+			<result name="success" type="tiles">donante_campania_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="guardarDonanteCampania" class="pmp.lupdup.web.donantes.action.DonanteCampaniaAction" method="guardar">
+			<result name="error" type="json" />
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="eliminarDonanteCampania" class="pmp.lupdup.web.donantes.action.DonanteCampaniaAction" method="eliminar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+
+
+		
+		
+	</package>
+	
+</struts>

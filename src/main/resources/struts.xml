@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="false" />
+	<constant name="struts.ui.theme" value="simple" />
+	<constant name="struts.objectFactory" value="spring"/>
+	<constant name="struts.ui.templateDir" value="template" />
+	<constant name="struts.multipart.maxSize" value="10000000000"/>
+	
+	<!-- Add packages here -->
+	
+	<include file="struts/struts-principal.xml"/>
+	<include file="struts/struts-home.xml"/>
+	
+	<include file="struts/seguridad/struts-seguridad.xml"/>
+	
+	<include file="struts/donantes/struts-allegados.xml"/>
+	<include file="struts/donantes/struts-cita.xml"/>
+	<include file="struts/donantes/struts-donante-campania.xml"/>
+	<include file="struts/donantes/struts-cuestionario-rpta.xml"/>
+	<include file="struts/donantes/struts-donante.xml"/>
+	<include file="struts/donantes/struts-historial-puntos.xml"/>
+	<include file="struts/donantes/struts-ficha-resultados.xml"/>
+	
+	<include file="struts/administrador/struts-centro-salud.xml"/>
+	<include file="struts/administrador/struts-cuestionario.xml"/>
+	<include file="struts/administrador/struts-entidad-colaboradora.xml"/>
+	<include file="struts/administrador/struts-imagen.xml"/>
+	<include file="struts/administrador/struts-sede-entidad-colaboradora.xml"/>
+	<include file="struts/administrador/struts-sede-salud.xml"/>
+	<include file="struts/administrador/struts-usuario.xml"/>
+	<include file="struts/administrador/struts-usuario-centro-salud.xml"/>
+	<include file="struts/administrador/struts-usuario-entidad-colaboradora.xml"/>
+	
+	<include file="struts/csalud/struts-bandeja-cita.xml"/>
+	
+	<include file="struts/ecooperante/struts-campania-cooperante.xml"/>
+	<include file="struts/ecooperante/struts-club-donante-campania.xml"/>
+	
+</struts>

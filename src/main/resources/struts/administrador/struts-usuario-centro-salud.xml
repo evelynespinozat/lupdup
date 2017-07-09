@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<package name="usuario-centro-salud" namespace="/" extends="principal">
+		<action name="buscarUsuarioCentroSalud" class="pmp.lupdup.web.administrador.action.UsuarioCentroSaludAction" method="buscar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="nuevoUsuarioCentroSalud" class="pmp.lupdup.web.administrador.action.UsuarioCentroSaludAction" method="nuevo">
+			<result name="success" type="tiles">usuario_centro_salud_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="editarUsuarioCentroSalud" class="pmp.lupdup.web.administrador.action.UsuarioCentroSaludAction" method="editar">
+			<result name="success" type="tiles">usuario_centro_salud_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="guardarUsuarioCentroSalud" class="pmp.lupdup.web.administrador.action.UsuarioCentroSaludAction" method="guardar">
+			<result name="error" type="json" />
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="eliminarUsuarioCentroSalud" class="pmp.lupdup.web.administrador.action.UsuarioCentroSaludAction" method="eliminar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+
+
+		
+		
+	</package>
+	
+</struts>

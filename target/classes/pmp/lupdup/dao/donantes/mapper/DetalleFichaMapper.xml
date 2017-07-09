@@ -1,0 +1,638 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.donantes.mapper.DetalleFichaMapper">
+	<resultMap id="DetalleFichaMap" type="pmp.lupdup.dao.donantes.domain.DetalleFicha">
+		<result column="id_detalleficha" property="srlIdDetalleficha" jdbcType="INTEGER"/>
+		<result column="id_ficha" property="intIdFicha" jdbcType="INTEGER"/>
+		<result column="num_hematies" property="intNumHematies" jdbcType="INTEGER"/>
+		<result column="num_hemoglobina" property="intNumHemoglobina" jdbcType="INTEGER"/>
+		<result column="num_hematocrito" property="intNumHematocrito" jdbcType="INTEGER"/>
+		<result column="num_vcm" property="intNumVcm" jdbcType="INTEGER"/>
+		<result column="num_chm" property="intNumChm" jdbcType="INTEGER"/>
+		<result column="num_linfocitos" property="intNumLinfocitos" jdbcType="INTEGER"/>
+		<result column="num_plaquetas" property="intNumPlaquetas" jdbcType="INTEGER"/>
+		<result column="num_leucocitos" property="intNumLeucocitos" jdbcType="INTEGER"/>
+		<result column="num_neutrofilos" property="intNumNeutrofilos" jdbcType="INTEGER"/>
+		<result column="num_eosinofilos" property="intNumEosinofilos" jdbcType="INTEGER"/>
+		<result column="num_vsg" property="intNumVsg" jdbcType="INTEGER"/>
+		<result column="num_glucosa" property="intNumGlucosa" jdbcType="INTEGER"/>
+		<result column="num_urea" property="intNumUrea" jdbcType="INTEGER"/>
+		<result column="num_acisourico" property="intNumAcisourico" jdbcType="INTEGER"/>
+		<result column="num_creatinina" property="intNumCreatinina" jdbcType="INTEGER"/>
+		<result column="num_colesterol" property="intNumColesterol" jdbcType="INTEGER"/>
+		<result column="num_hdl" property="intNumHdl" jdbcType="INTEGER"/>
+		<result column="num_ldl" property="intNumLdl" jdbcType="INTEGER"/>
+		<result column="num_trigliceridos" property="intNumTrigliceridos" jdbcType="INTEGER"/>
+		<result column="num_transaminasa_got" property="intNumTransaminasaGot" jdbcType="INTEGER"/>
+		<result column="num_transaminasa_gpt" property="intNumTransaminasaGpt" jdbcType="INTEGER"/>
+		<result column="num_transaminasa_ggt" property="intNumTransaminasaGgt" jdbcType="INTEGER"/>
+		<result column="num_fosfatasa_alcalina" property="intNumFosfatasaAlcalina" jdbcType="INTEGER"/>
+		<result column="num_calcio" property="intNumCalcio" jdbcType="INTEGER"/>
+		<result column="num_hierro" property="intNumHierro" jdbcType="INTEGER"/>
+		<result column="num_potacio" property="intNumPotacio" jdbcType="INTEGER"/>
+		<result column="num_sodio" property="intNumSodio" jdbcType="INTEGER"/>
+		<result column="num_bilirrubina" property="intNumBilirrubina" jdbcType="INTEGER"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="DetalleFichaMap" parameterType="pmp.lupdup.dao.donantes.domain.DetalleFichaParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_detalle_ficha as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="DetalleFichaMap" parameterType="pmp.lupdup.dao.donantes.domain.DetalleFichaKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_detalle_ficha as tab
+		where 1 = 1
+		and id_detalleficha = #{srlIdDetalleficha,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_detalle_ficha_id_detalleficha_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.donantes.domain.DetalleFicha">
+		insert into lupdup.t_detalle_ficha
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			id_ficha,
+			num_hematies,
+			num_hemoglobina,
+			num_hematocrito,
+			num_vcm,
+			num_chm,
+			num_linfocitos,
+			num_plaquetas,
+			num_leucocitos,
+			num_neutrofilos,
+			num_eosinofilos,
+			num_vsg,
+			num_glucosa,
+			num_urea,
+			num_acisourico,
+			num_creatinina,
+			num_colesterol,
+			num_hdl,
+			num_ldl,
+			num_trigliceridos,
+			num_transaminasa_got,
+			num_transaminasa_gpt,
+			num_transaminasa_ggt,
+			num_fosfatasa_alcalina,
+			num_calcio,
+			num_hierro,
+			num_potacio,
+			num_sodio,
+			num_bilirrubina,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="intIdFicha != null">
+					#{intIdFicha, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumHematies != null">
+					#{intNumHematies, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumHemoglobina != null">
+					#{intNumHemoglobina, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumHematocrito != null">
+					#{intNumHematocrito, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumVcm != null">
+					#{intNumVcm, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumChm != null">
+					#{intNumChm, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumLinfocitos != null">
+					#{intNumLinfocitos, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumPlaquetas != null">
+					#{intNumPlaquetas, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumLeucocitos != null">
+					#{intNumLeucocitos, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumNeutrofilos != null">
+					#{intNumNeutrofilos, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumEosinofilos != null">
+					#{intNumEosinofilos, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumVsg != null">
+					#{intNumVsg, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumGlucosa != null">
+					#{intNumGlucosa, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumUrea != null">
+					#{intNumUrea, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumAcisourico != null">
+					#{intNumAcisourico, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumCreatinina != null">
+					#{intNumCreatinina, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumColesterol != null">
+					#{intNumColesterol, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumHdl != null">
+					#{intNumHdl, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumLdl != null">
+					#{intNumLdl, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumTrigliceridos != null">
+					#{intNumTrigliceridos, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumTransaminasaGot != null">
+					#{intNumTransaminasaGot, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumTransaminasaGpt != null">
+					#{intNumTransaminasaGpt, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumTransaminasaGgt != null">
+					#{intNumTransaminasaGgt, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumFosfatasaAlcalina != null">
+					#{intNumFosfatasaAlcalina, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumCalcio != null">
+					#{intNumCalcio, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumHierro != null">
+					#{intNumHierro, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumPotacio != null">
+					#{intNumPotacio, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumSodio != null">
+					#{intNumSodio, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumBilirrubina != null">
+					#{intNumBilirrubina, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.donantes.domain.DetalleFicha">
+		update lupdup.t_detalle_ficha
+		<set>
+			<choose>
+				<when test="intIdFicha != null">
+					id_ficha = #{intIdFicha,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_ficha = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumHematies != null">
+					num_hematies = #{intNumHematies,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_hematies = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumHemoglobina != null">
+					num_hemoglobina = #{intNumHemoglobina,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_hemoglobina = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumHematocrito != null">
+					num_hematocrito = #{intNumHematocrito,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_hematocrito = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumVcm != null">
+					num_vcm = #{intNumVcm,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_vcm = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumChm != null">
+					num_chm = #{intNumChm,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_chm = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumLinfocitos != null">
+					num_linfocitos = #{intNumLinfocitos,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_linfocitos = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumPlaquetas != null">
+					num_plaquetas = #{intNumPlaquetas,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_plaquetas = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumLeucocitos != null">
+					num_leucocitos = #{intNumLeucocitos,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_leucocitos = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumNeutrofilos != null">
+					num_neutrofilos = #{intNumNeutrofilos,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_neutrofilos = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumEosinofilos != null">
+					num_eosinofilos = #{intNumEosinofilos,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_eosinofilos = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumVsg != null">
+					num_vsg = #{intNumVsg,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_vsg = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumGlucosa != null">
+					num_glucosa = #{intNumGlucosa,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_glucosa = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumUrea != null">
+					num_urea = #{intNumUrea,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_urea = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumAcisourico != null">
+					num_acisourico = #{intNumAcisourico,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_acisourico = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumCreatinina != null">
+					num_creatinina = #{intNumCreatinina,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_creatinina = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumColesterol != null">
+					num_colesterol = #{intNumColesterol,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_colesterol = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumHdl != null">
+					num_hdl = #{intNumHdl,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_hdl = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumLdl != null">
+					num_ldl = #{intNumLdl,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_ldl = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumTrigliceridos != null">
+					num_trigliceridos = #{intNumTrigliceridos,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_trigliceridos = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumTransaminasaGot != null">
+					num_transaminasa_got = #{intNumTransaminasaGot,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_transaminasa_got = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumTransaminasaGpt != null">
+					num_transaminasa_gpt = #{intNumTransaminasaGpt,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_transaminasa_gpt = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumTransaminasaGgt != null">
+					num_transaminasa_ggt = #{intNumTransaminasaGgt,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_transaminasa_ggt = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumFosfatasaAlcalina != null">
+					num_fosfatasa_alcalina = #{intNumFosfatasaAlcalina,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_fosfatasa_alcalina = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumCalcio != null">
+					num_calcio = #{intNumCalcio,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_calcio = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumHierro != null">
+					num_hierro = #{intNumHierro,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_hierro = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumPotacio != null">
+					num_potacio = #{intNumPotacio,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_potacio = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumSodio != null">
+					num_sodio = #{intNumSodio,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_sodio = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intNumBilirrubina != null">
+					num_bilirrubina = #{intNumBilirrubina,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					num_bilirrubina = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_detalleficha = #{srlIdDetalleficha,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.donantes.domain.DetalleFichaKey">
+		delete from lupdup.t_detalle_ficha
+		where 1 = 1
+		<if test="srlIdDetalleficha != null">
+		and id_detalleficha = #{srlIdDetalleficha,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_detalleficha, 
+id_ficha, 
+num_hematies, 
+num_hemoglobina, 
+num_hematocrito, 
+num_vcm, 
+num_chm, 
+num_linfocitos, 
+num_plaquetas, 
+num_leucocitos, 
+num_neutrofilos, 
+num_eosinofilos, 
+num_vsg, 
+num_glucosa, 
+num_urea, 
+num_acisourico, 
+num_creatinina, 
+num_colesterol, 
+num_hdl, 
+num_ldl, 
+num_trigliceridos, 
+num_transaminasa_got, 
+num_transaminasa_gpt, 
+num_transaminasa_ggt, 
+num_fosfatasa_alcalina, 
+num_calcio, 
+num_hierro, 
+num_potacio, 
+num_sodio, 
+num_bilirrubina]]>
+	</sql>
+</mapper>

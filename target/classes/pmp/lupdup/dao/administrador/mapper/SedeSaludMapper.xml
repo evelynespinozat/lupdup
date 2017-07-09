@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="pmp.lupdup.dao.administrador.mapper.SedeSaludMapper">
+	<resultMap id="SedeSaludMap" type="pmp.lupdup.dao.administrador.domain.SedeSalud">
+		<result column="id_sedesalud" property="srlIdSedesalud" jdbcType="INTEGER"/>
+		<result column="nom_nombre" property="strNomNombre" jdbcType="VARCHAR"/>
+		<result column="des_direccion" property="strDesDireccion" jdbcType="VARCHAR"/>
+		<result column="num_telefono" property="strNumTelefono" jdbcType="VARCHAR"/>
+		<result column="num_celular" property="strNumCelular" jdbcType="VARCHAR"/>
+		<result column="id_centrosalud" property="intIdCentrosalud" jdbcType="INTEGER"/>
+		<result column="ind_ubicacion_str" property="strIndUbicacion" jdbcType="VARCHAR"/>
+		<result column="ind_zoom" property="intIndZoom" jdbcType="INTEGER"/>
+		<result column="des_hospital_str" property="strDesHospital" jdbcType="VARCHAR"/>
+		<result column="ind_hora_desde" property="dteIndHoraDesde" jdbcType="TIME"/>
+		<result column="ind_hora_hasta" property="dteIndHoraHasta" jdbcType="TIME"/>
+		<result column="ind_estado" property="strIndEstado" jdbcType="VARCHAR"/>
+	</resultMap>
+	<select id="selectByDefaultParameter" resultMap="SedeSaludMap" parameterType="pmp.lupdup.dao.administrador.domain.SedeSaludParamDef">
+		select
+		<if test="distinct" >
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from lupdup.t_sede_salud as tab
+		<if test="_parameter != null" >
+			<include refid="Parameter_Default_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="SedeSaludMap" parameterType="pmp.lupdup.dao.administrador.domain.SedeSaludKey" >
+		select 
+		<include refid="Base_Column_List" />
+		from lupdup.t_sede_salud as tab
+		where 1 = 1
+		and id_sedesalud = #{srlIdSedesalud,jdbcType=INTEGER}
+	</select>
+
+	<select id="lastSequence" resultType="java.lang.Integer">
+		select currval('lupdup.t_sede_salud_id_sedesalud_seq')
+	</select>
+
+	<insert id="insertSelective" parameterType="pmp.lupdup.dao.administrador.domain.SedeSalud">
+		insert into lupdup.t_sede_salud
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			nom_nombre,
+			des_direccion,
+			num_telefono,
+			num_celular,
+			id_centrosalud,
+			ind_ubicacion,
+			ind_zoom,
+			ind_hora_desde,
+			ind_hora_hasta,
+			ind_estado,
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<choose>
+				<when test="strNomNombre != null">
+					#{strNomNombre, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesDireccion != null">
+					#{strDesDireccion, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumTelefono != null">
+					#{strNumTelefono, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumCelular != null">
+					#{strNumCelular, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdCentrosalud != null">
+					#{intIdCentrosalud, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strIndUbicacion != null">
+					ST_GeomFromText(#{strIndUbicacion, jdbcType=VARCHAR}),
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndZoom != null">
+					#{intIndZoom, jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteIndHoraDesde != null">
+					#{dteIndHoraDesde, jdbcType=TIME},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteIndHoraHasta != null">
+					#{dteIndHoraHasta, jdbcType=TIME},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strIndEstado != null">
+					#{strIndEstado, jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					null,
+				</otherwise>
+			</choose>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="pmp.lupdup.dao.administrador.domain.SedeSalud">
+		update lupdup.t_sede_salud
+		<set>
+			<choose>
+				<when test="strNomNombre != null">
+					nom_nombre = #{strNomNombre,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					nom_nombre = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strDesDireccion != null">
+					des_direccion = #{strDesDireccion,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					des_direccion = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumTelefono != null">
+					num_telefono = #{strNumTelefono,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					num_telefono = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strNumCelular != null">
+					num_celular = #{strNumCelular,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					num_celular = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIdCentrosalud != null">
+					id_centrosalud = #{intIdCentrosalud,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					id_centrosalud = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strIndUbicacion != null">
+					ind_ubicacion = ST_GeomFromText(#{strIndUbicacion,jdbcType=VARCHAR}),
+				</when>
+				<otherwise>
+					ind_ubicacion = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="intIndZoom != null">
+					ind_zoom = #{intIndZoom,jdbcType=INTEGER},
+				</when>
+				<otherwise>
+					ind_zoom = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteIndHoraDesde != null">
+					ind_hora_desde = #{dteIndHoraDesde,jdbcType=TIME},
+				</when>
+				<otherwise>
+					ind_hora_desde = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="dteIndHoraHasta != null">
+					ind_hora_hasta = #{dteIndHoraHasta,jdbcType=TIME},
+				</when>
+				<otherwise>
+					ind_hora_hasta = null,
+				</otherwise>
+			</choose>
+			<choose>
+				<when test="strIndEstado != null">
+					ind_estado = #{strIndEstado,jdbcType=VARCHAR},
+				</when>
+				<otherwise>
+					ind_estado = null,
+				</otherwise>
+			</choose>
+		</set>
+		where 1 = 1
+		and id_sedesalud = #{srlIdSedesalud,jdbcType=INTEGER}
+	</update>
+	<delete id="deleteByPrimaryKey" parameterType="pmp.lupdup.dao.administrador.domain.SedeSaludKey">
+		delete from lupdup.t_sede_salud
+		where 1 = 1
+		<if test="srlIdSedesalud != null">
+		and id_sedesalud = #{srlIdSedesalud,jdbcType=INTEGER}
+		</if>
+	</delete>
+	<!-- Criterios de seleccion -->
+	<sql id="Parameter_Default_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or" >
+				<if test="criteria.valid" >
+					<trim prefix="(" suffix=")" prefixOverrides="and" >
+						<foreach collection="criteria.criteria" item="criterion" >
+							<choose >
+								<when test="criterion.noValue" >
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue" >
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue" >
+									and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue" >
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		<![CDATA[id_sedesalud, 
+nom_nombre, 
+des_direccion, 
+num_telefono, 
+num_celular, 
+id_centrosalud,
+ST_AsText(ind_ubicacion) as ind_ubicacion_str,
+ind_zoom,
+(select h.nom_nombre from lupdup.t_centro_salud h where tab.id_centrosalud=h.id_centrosalud) as des_hospital_str,
+ind_hora_desde,
+ind_hora_hasta
+]]>
+	</sql>
+</mapper>

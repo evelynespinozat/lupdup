@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<constant name="struts.i18n.encoding" value="UTF-8"/>
+	<package name="cuestionario-rpta" namespace="/" extends="principal">
+		<action name="cuestionarioRpta" class="pmp.lupdup.web.donantes.action.CuestionarioRptaAction" method="inicio">
+			<result name="success" type="tiles" >cuestionario_rpta_inicio</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="buscarCuestionarioRpta" class="pmp.lupdup.web.donantes.action.CuestionarioRptaAction" method="buscar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="nuevoCuestionarioRpta" class="pmp.lupdup.web.donantes.action.CuestionarioRptaAction" method="nuevo">
+			<result name="success" type="tiles">cuestionario_rpta_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="editarCuestionarioRpta" class="pmp.lupdup.web.donantes.action.CuestionarioRptaAction" method="editar">
+			<result name="success" type="tiles">cuestionario_rpta_form</result>
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+		<action name="guardarCuestionarioRpta" class="pmp.lupdup.web.donantes.action.CuestionarioRptaAction" method="guardar">
+			<result name="error" type="json" />
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack" />
+		</action>
+		
+		<action name="eliminarCuestionarioRpta" class="pmp.lupdup.web.donantes.action.CuestionarioRptaAction" method="eliminar">
+			<result name="success" type="json" />
+			<interceptor-ref name="basicStack"/>
+		</action>
+		
+
+
+		
+		
+	</package>
+	
+</struts>

@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="reporteFichaResultados" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0f365da7-8375-4272-a287-3d069ac6036d">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="parametro.strNombreCompleto" class="java.lang.String"/>
+	<field name="dteFecAnalisisFecha" class="java.lang.String"/>
+	<field name="strHorAnalisis" class="java.lang.String"/>
+	<field name="intNumUnidades" class="java.lang.String"/>
+	<field name="intNumHematies" class="java.lang.String"/>
+	<field name="intNumHemoglobina" class="java.lang.String"/>
+	<field name="intNumHematocrito" class="java.lang.String"/>
+	<field name="intNumVcm" class="java.lang.String"/>
+	<field name="intNumChm" class="java.lang.String"/>
+	<field name="intNumLinfocitos" class="java.lang.String"/>
+	<field name="intNumPlaquetas" class="java.lang.String"/>
+	<field name="intNumLeucocitos" class="java.lang.String"/>
+	<field name="intNumNeutrofilos" class="java.lang.String"/>
+	<field name="intNumEosinofilos" class="java.lang.String"/>
+	<field name="intNumVsg" class="java.lang.String"/>
+	<field name="intNumGlucosa" class="java.lang.String"/>
+	<field name="intNumUrea" class="java.lang.String"/>
+	<field name="intNumAcisourico" class="java.lang.String"/>
+	<field name="intNumCreatinina" class="java.lang.String"/>
+	<field name="intNumColesterol" class="java.lang.String"/>
+	<field name="intNumHdl" class="java.lang.String"/>
+	<field name="intNumLdl" class="java.lang.String"/>
+	<field name="intNumTrigliceridos" class="java.lang.String"/>
+	<field name="intNumTransaminasaGot" class="java.lang.String"/>
+	<field name="intNumTransaminasaGpt" class="java.lang.String"/>
+	<field name="intNumTransaminasaGgt" class="java.lang.String"/>
+	<field name="intNumFosfatasaAlcalina" class="java.lang.String"/>
+	<field name="intNumCalcio" class="java.lang.String"/>
+	<field name="intNumHierro" class="java.lang.String"/>
+	<field name="intNumPotacio" class="java.lang.String"/>
+	<field name="intNumSodio" class="java.lang.String"/>
+	<field name="intNumBilirrubina" class="java.lang.String"/>
+	<title>
+		<band height="65" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="016ef5a4-ae54-4e6d-b1c4-4e9728de7f78" x="0" y="0" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[Reporte de resultados de analisis de sangre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="0" y="20" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nombre donante:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="100" y="20" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{parametro.strNombreCompleto}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<detail>
+		<band height="477" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="0" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fecha de análisis]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="0" y="20" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{dteFecAnalisisFecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="100" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hora de análisis]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="100" y="20" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{strHorAnalisis}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="200" y="0" width="100" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Unidades]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="200" y="20" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumUnidades}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="0" y="54" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hematies]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="180" y="54" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hemoglobina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="360" y="54" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hematocrito]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="0" y="74" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumHematies}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="360" y="74" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumHematocrito}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="180" y="74" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumHemoglobina}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="0" y="114" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumVcm}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="180" y="94" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Chm]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="360" y="94" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Linfocitos]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="360" y="114" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumLinfocitos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="180" y="114" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumChm}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="0" y="94" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vcm]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="360" y="154" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumNeutrofilos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="180" y="154" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumLeucocitos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="0" y="134" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Plaquetas]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="0" y="154" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumPlaquetas}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="180" y="134" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Leucocitos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="360" y="134" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Neutrofilos]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="180" y="194" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumVsg}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="180" y="174" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Vsg]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="0" y="194" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumEosinofilos}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="360" y="194" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumGlucosa}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="0" y="174" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Eosinofilos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="360" y="174" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Glucosa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="180" y="214" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Acisourico]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="0" y="234" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumUrea}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="360" y="234" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumCreatinina}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="360" y="214" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Creatinina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="0" y="214" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Urea]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="180" y="234" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumAcisourico}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="0" y="274" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumColesterol}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="360" y="314" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumTransaminasaGpt}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="0" y="354" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumTransaminasaGgt}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="360" y="274" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumLdl}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="0" y="334" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaminasa Ggt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="0" y="294" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Trigliceridos]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="360" y="394" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumSodio}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="360" y="254" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Ldl]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="360" y="374" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sodio]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="0" y="374" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hierro]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="0" y="314" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumTrigliceridos}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="180" y="374" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Potacio]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="180" y="354" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumFosfatasaAlcalina}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="0" y="394" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumHierro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="180" y="334" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fosfatasa Alcalina]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="180" y="314" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumTransaminasaGot}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="360" y="334" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Calcio]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="180" y="274" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumHdl}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="180" y="294" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaminasa Got]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="0" y="254" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Colesterol]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="360" y="294" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transaminasa Gpt]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="0" y="414" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bilirrubina]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="caf8cb54-7526-4258-9de6-59da2c05f2ed" x="180" y="254" width="180" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Hdl]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="360" y="354" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumCalcio}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="180" y="394" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumPotacio}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="1493ee64-933e-4bcb-8ade-c47885f2a85a" x="0" y="434" width="180" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{intNumBilirrubina}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
